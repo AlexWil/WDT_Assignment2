@@ -34,7 +34,7 @@ namespace Assignment2_2
 
             if (pwdInDb.Equals(password))
             {
-                message.Text = "Login successful.";
+                message.Text = "Login very successful.";
                 System.Diagnostics.Debug.WriteLine("Success");
                 Response.Redirect("~/Home.aspx");
             }
