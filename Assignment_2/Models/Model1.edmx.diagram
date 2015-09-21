@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="a0b4c606b41f4431bfba89d888452db1" Name="Diagram1">
+        <EntityTypeShape EntityType="Assignment_2Model.Cineplex" Width="1.5" PointX="0.75" PointY="0.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="Assignment_2Model.Enquiry" Width="1.5" PointX="0.75" PointY="4.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="Assignment_2Model.MovieComingSoon" Width="1.5" PointX="5.5" PointY="3.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="Assignment_2Model.sysdiagram" Width="1.5" PointX="5.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="Assignment_2Model.Movie" Width="1.5" PointX="0.75" PointY="7.75" />
+        <EntityTypeShape EntityType="Assignment_2Model.MovieSession" Width="1.5" PointX="3" PointY="0.875" />
+        <AssociationConnector Association="Assignment_2Model.FK_MovieSession_Cineplex" />
+        <AssociationConnector Association="Assignment_2Model.FK_MovieSession_Movie" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>
