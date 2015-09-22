@@ -18,10 +18,10 @@
             @Html.DisplayNameFor(model => model.LongDescription)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.ImageUrl)
+            @Html.DisplayNameFor(model => model.Price)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Price)
+            
         </th>
         <th></th>
     </tr>
@@ -38,11 +38,12 @@
             @Html.DisplayFor(modelItem => item.LongDescription)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.ImageUrl)
+           $ @Html.DisplayFor(modelItem => item.Price)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.Price)
+            <img class="movie-poster" src="@Html.DisplayFor(modelItem => item.ImageUrl)" />
         </td>
+        
     </tr>
 }
 

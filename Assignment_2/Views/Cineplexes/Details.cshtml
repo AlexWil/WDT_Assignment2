@@ -4,19 +4,12 @@
     ViewBag.Title = "Details";
 }
 
-<h2>Details</h2>
+<h2>Cineplex @Html.DisplayFor(model => model.Location)</h2>
 
-<div>
-    <h4>Cineplex</h4>
+<div class="row">
+    <div class="col-lg-6">
     <hr />
     <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.Location)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Location)
-        </dd>
 
         <dt>
             @Html.DisplayNameFor(model => model.ShortDescription)
@@ -34,15 +27,13 @@
             @Html.DisplayFor(model => model.LongDescription)
         </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.ImageUrl)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.ImageUrl)
-        </dd>
 
     </dl>
+</div>
+    <div class="col-lg-6">
+        <img src="@Html.DisplayFor(model => model.ImageUrl)">
+    </div>
+
 </div>
 <p>
     @Html.ActionLink("Edit", "Edit", new { id = Model.CineplexID }) |

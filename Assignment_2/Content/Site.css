@@ -15,3 +15,9 @@ select,
 textarea {
     max-width: 280px;
 }
+.movie-poster {
+    max-height:200px;
+}
+.map {
+    max-width:200px;
+}
