@@ -11,8 +11,11 @@
 </p>
 @using (Html.BeginForm())
 {
+    
     <p>
-        Find a movie or Cineplex @Html.TextBox("SearchString")
+        @Html.DropDownList("Sessions", (SelectList)ViewBag.Values, "All", new { onchange = "this.form.submit();" })
+        
+        Find a movie @Html.TextBox("SearchString")
         <input type="submit" value="Search" />
     </p>
 }

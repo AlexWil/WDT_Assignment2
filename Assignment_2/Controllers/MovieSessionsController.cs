@@ -15,14 +15,21 @@ namespace Assignment_2.Controllers
         private Assignment_2Entities db = new Assignment_2Entities();
 
         // GET: MovieSessions
-        public ActionResult Index(string searchString)
+        public ActionResult Index(string sessions, string searchString)
         {
             var movieSessions = db.MovieSessions.Include(m => m.Cineplex).Include(m => m.Movie);
+            if (!String.IsNullOrEmpty(sessions))
+                if (sessions != ("All"))
+                {
+                    {
+                        movieSessions = movieSessions.Where(s => s.Cineplex.Location.Contains(sessions));
+                    }
+                }
             if (!String.IsNullOrEmpty(searchString))
             {
-                movieSessions = movieSessions.Where(s => s.Cineplex.Location.Contains(searchString)
-                                       || s.Movie.Title.Contains(searchString));
+                movieSessions = movieSessions.Where(s => s.Movie.Title.Contains(searchString));
             }
+            ViewBag.Sessions = new SelectList(db.Cineplexes.Select(c => c.Location));
             return View(movieSessions.ToList());
         }
 
