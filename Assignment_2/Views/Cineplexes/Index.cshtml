@@ -1,0 +1,51 @@
+﻿@model IEnumerable<Assignment_2.Models.Cineplex>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Our Cineplexes</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Location)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ShortDescription)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.LongDescription)
+        </th>
+        <th>
+           
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.ActionLink((item.Location), "Details", new { id = item.CineplexID })
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ShortDescription)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.LongDescription)
+        </td>
+        <td>
+            <img  class="map" src="@Html.DisplayFor(modelItem => item.ImageUrl)" />
+        </td>
+        <!--<td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.CineplexID }) |
+            @Html.ActionLink("Details", "Details", new { id=item.CineplexID }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.CineplexID })
+        </td>-->
+    </tr>
+}
+
+</table>
