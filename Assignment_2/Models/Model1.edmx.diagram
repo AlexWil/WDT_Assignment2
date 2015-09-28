@@ -5,14 +5,14 @@
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
       <Diagram DiagramId="c2aa4fe949e442048216fefa51f5f570" Name="Diagram1">
-        <EntityTypeShape EntityType="A2_WDTModel.Cineplex" Width="1.5" PointX="0.75" PointY="2.375" IsExpanded="true" />
-        <EntityTypeShape EntityType="A2_WDTModel.CineplexMovie" Width="1.5" PointX="3" PointY="2.5" IsExpanded="true" />
-        <EntityTypeShape EntityType="A2_WDTModel.Enquiry" Width="1.5" PointX="7.75" PointY="0.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="A2_WDTModel.Movie" Width="1.5" PointX="0.75" PointY="7.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="A2_WDTModel.Cineplex" Width="1.5" PointX="1.625" PointY="0.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="A2_WDTModel.CineplexMovie" Width="1.5" PointX="3.5" PointY="0.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="A2_WDTModel.Enquiry" Width="1.5" PointX="7.375" PointY="0.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="A2_WDTModel.Movie" Width="1.5" PointX="3.5" PointY="2.875" IsExpanded="true" />
         <EntityTypeShape EntityType="A2_WDTModel.MovieComingSoon" Width="1.5" PointX="5.75" PointY="7.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="A2_WDTModel.MovieSession" Width="1.5" PointX="5.25" PointY="2.375" IsExpanded="true" />
-        <EntityTypeShape EntityType="A2_WDTModel.Seating" Width="1.5" PointX="3" PointY="5.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="A2_WDTModel.SessionBooking" Width="1.5" PointX="7.5" PointY="3.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="A2_WDTModel.MovieSession" Width="1.5" PointX="5.375" PointY="0.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="A2_WDTModel.Seating" Width="1.5" PointX="1.625" PointY="3.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="A2_WDTModel.SessionBooking" Width="1.5" PointX="7.375" PointY="3.25" IsExpanded="true" />
         <AssociationConnector Association="A2_WDTModel.FK__CineplexM__Cinep__34C8D9D1" ManuallyRouted="false" />
         <AssociationConnector Association="A2_WDTModel.FK__Seating__Cineple__38996AB5" ManuallyRouted="false" />
         <AssociationConnector Association="A2_WDTModel.FK__CineplexM__Movie__35BCFE0A" ManuallyRouted="false" />
