@@ -7,6 +7,7 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using System.Configuration;
+using System.Web.Security;
 
 namespace Assignment2_2
 {
@@ -22,27 +23,27 @@ namespace Assignment2_2
             String password = pwd.Value;
             String userName = usr.Value;
 
-            SqlConnection conn = new SqlConnection(ConfigurationManager.ConnectionStrings["CineplexConnectionString"].ConnectionString);
-            SqlCommand cmd = new SqlCommand("ReadPassword", conn) {CommandType = CommandType.StoredProcedure};
+            SqlConnection conn =
+                new SqlConnection(ConfigurationManager.ConnectionStrings["CineplexConnectionString"].ConnectionString);
+            SqlCommand cmd = new SqlCommand("ReadPassword", conn) { CommandType = CommandType.StoredProcedure };
             cmd.Parameters.AddWithValue("@QueriedUsername", userName);
             conn.Open();
             SqlDataReader reader = cmd.ExecuteReader();
 
-            reader.Read();
-            String pwdInDb = (String)reader["Password"];
-            conn.Close();
+            if (reader.HasRows)
+            {
+                reader.Read();
 
-            if (pwdInDb.Equals(password))
-            {
-                message.Text = "Login very successful.";
-                System.Diagnostics.Debug.WriteLine("Success");
-                Response.Redirect("~/Home.aspx");
+                String pwdInDb = (String)reader["Password"];
+                conn.Close();
+
+                if (pwdInDb.Equals(password))
+                {
+                    FormsAuthentication.RedirectFromLoginPage(userName, true);
+                }
             }
-            else
-            {
-                message.Text = "Login failed. Check Username and Password.";
-                System.Diagnostics.Debug.WriteLine("Failure");
-            }
+            message.Text = "Login failed. Check Username and Password.";
         }
     }
 }
+

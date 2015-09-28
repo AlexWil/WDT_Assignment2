@@ -14,7 +14,7 @@ namespace Assignment2_2
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-
+            Master.MoviesNavigation.Attributes["class"] = "active";
         }
 
         protected void GridView1_SelectedIndexChanged(object sender, EventArgs e)

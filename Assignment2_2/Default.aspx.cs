@@ -11,7 +11,7 @@ namespace Assignment2_2
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-
+            Master.HomeNavigation.Attributes["class"] = "active";
         }
     }
 }
