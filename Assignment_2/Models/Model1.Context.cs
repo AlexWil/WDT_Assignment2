@@ -26,12 +26,11 @@ namespace Assignment_2.Models
         }
     
         public virtual DbSet<Cineplex> Cineplexes { get; set; }
-        public virtual DbSet<CineplexMovie> CineplexMovies { get; set; }
         public virtual DbSet<Enquiry> Enquiries { get; set; }
         public virtual DbSet<Movie> Movies { get; set; }
         public virtual DbSet<MovieComingSoon> MovieComingSoons { get; set; }
-        public virtual DbSet<MovieSession> MovieSessions { get; set; }
         public virtual DbSet<Seating> Seatings { get; set; }
+        public virtual DbSet<MovieSession> MovieSessions { get; set; }
         public virtual DbSet<SessionBooking> SessionBookings { get; set; }
     }
 }

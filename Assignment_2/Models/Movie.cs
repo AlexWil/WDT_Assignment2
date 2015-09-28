@@ -16,7 +16,7 @@ namespace Assignment_2.Models
     {
         public Movie()
         {
-            this.CineplexMovies = new HashSet<CineplexMovie>();
+            this.MovieSessions = new HashSet<MovieSession>();
         }
     
         public int MovieID { get; set; }
@@ -26,6 +26,6 @@ namespace Assignment_2.Models
         public string ImageUrl { get; set; }
         public decimal Price { get; set; }
     
-        public virtual ICollection<CineplexMovie> CineplexMovies { get; set; }
+        public virtual ICollection<MovieSession> MovieSessions { get; set; }
     }
 }

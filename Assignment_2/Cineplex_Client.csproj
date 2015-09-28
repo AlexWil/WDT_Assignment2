@@ -172,9 +172,6 @@
     <Compile Include="Models\Cineplex.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\CineplexMovie.cs">
-      <DependentUpon>Model1.tt</DependentUpon>
-    </Compile>
     <Compile Include="Models\Enquiry.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>

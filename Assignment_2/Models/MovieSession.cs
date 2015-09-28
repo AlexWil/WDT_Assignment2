@@ -25,7 +25,8 @@ namespace Assignment_2.Models
         public System.DateTime SessionDay { get; set; }
         public System.TimeSpan SessionTime { get; set; }
     
-        public virtual CineplexMovie CineplexMovie { get; set; }
+        public virtual Cineplex Cineplex { get; set; }
+        public virtual Movie Movie { get; set; }
         public virtual ICollection<SessionBooking> SessionBookings { get; set; }
     }
 }
