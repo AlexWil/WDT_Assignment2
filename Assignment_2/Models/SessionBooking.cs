@@ -12,21 +12,15 @@ namespace Assignment_2.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class Cineplex
+    public partial class SessionBooking
     {
-        public Cineplex()
-        {
-            this.CineplexMovies = new HashSet<CineplexMovie>();
-            this.Seatings = new HashSet<Seating>();
-        }
-    
+        public int BookingID { get; set; }
+        public int SessionID { get; set; }
+        public string UserEmail { get; set; }
         public int CineplexID { get; set; }
-        public string Location { get; set; }
-        public string ShortDescription { get; set; }
-        public string LongDescription { get; set; }
-        public string ImageUrl { get; set; }
+        public int SeatingID { get; set; }
     
-        public virtual ICollection<CineplexMovie> CineplexMovies { get; set; }
-        public virtual ICollection<Seating> Seatings { get; set; }
+        public virtual MovieSession MovieSession { get; set; }
+        public virtual Seating Seating { get; set; }
     }
 }

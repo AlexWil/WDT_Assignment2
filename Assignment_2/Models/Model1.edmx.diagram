@@ -4,15 +4,21 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="a0b4c606b41f4431bfba89d888452db1" Name="Diagram1">
-        <EntityTypeShape EntityType="Assignment_2Model.Cineplex" Width="1.5" PointX="0.75" PointY="0.875" IsExpanded="true" />
-        <EntityTypeShape EntityType="Assignment_2Model.Enquiry" Width="1.5" PointX="0.75" PointY="4.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="Assignment_2Model.MovieComingSoon" Width="1.5" PointX="5.5" PointY="3.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="Assignment_2Model.sysdiagram" Width="1.5" PointX="5.75" PointY="0.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="Assignment_2Model.Movie" Width="1.5" PointX="0.75" PointY="7.75" />
-        <EntityTypeShape EntityType="Assignment_2Model.MovieSession" Width="1.5" PointX="3" PointY="0.875" />
-        <AssociationConnector Association="Assignment_2Model.FK_MovieSession_Cineplex" />
-        <AssociationConnector Association="Assignment_2Model.FK_MovieSession_Movie" />
+      <Diagram DiagramId="c2aa4fe949e442048216fefa51f5f570" Name="Diagram1">
+        <EntityTypeShape EntityType="A2_WDTModel.Cineplex" Width="1.5" PointX="0.75" PointY="2.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="A2_WDTModel.CineplexMovie" Width="1.5" PointX="3" PointY="2.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="A2_WDTModel.Enquiry" Width="1.5" PointX="7.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="A2_WDTModel.Movie" Width="1.5" PointX="0.75" PointY="7.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="A2_WDTModel.MovieComingSoon" Width="1.5" PointX="5.75" PointY="7.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="A2_WDTModel.MovieSession" Width="1.5" PointX="5.25" PointY="2.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="A2_WDTModel.Seating" Width="1.5" PointX="3" PointY="5.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="A2_WDTModel.SessionBooking" Width="1.5" PointX="7.5" PointY="3.75" IsExpanded="true" />
+        <AssociationConnector Association="A2_WDTModel.FK__CineplexM__Cinep__34C8D9D1" ManuallyRouted="false" />
+        <AssociationConnector Association="A2_WDTModel.FK__Seating__Cineple__38996AB5" ManuallyRouted="false" />
+        <AssociationConnector Association="A2_WDTModel.FK__CineplexM__Movie__35BCFE0A" ManuallyRouted="false" />
+        <AssociationConnector Association="A2_WDTModel.FK__MovieSessions__3B75D760" ManuallyRouted="false" />
+        <AssociationConnector Association="A2_WDTModel.FK__SessionBo__Sessi__3E52440B" ManuallyRouted="false" />
+        <AssociationConnector Association="A2_WDTModel.FK__SessionBooking__3F466844" ManuallyRouted="false" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

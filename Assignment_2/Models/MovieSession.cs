@@ -14,12 +14,18 @@ namespace Assignment_2.Models
     
     public partial class MovieSession
     {
+        public MovieSession()
+        {
+            this.SessionBookings = new HashSet<SessionBooking>();
+        }
+    
         public int SessionID { get; set; }
         public int CineplexID { get; set; }
         public int MovieID { get; set; }
-        public System.DateTime Time { get; set; }
+        public System.DateTime SessionDay { get; set; }
+        public System.TimeSpan SessionTime { get; set; }
     
-        public virtual Cineplex Cineplex { get; set; }
-        public virtual Movie Movie { get; set; }
+        public virtual CineplexMovie CineplexMovie { get; set; }
+        public virtual ICollection<SessionBooking> SessionBookings { get; set; }
     }
 }

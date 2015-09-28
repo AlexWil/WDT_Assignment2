@@ -12,12 +12,17 @@ namespace Assignment_2.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class sysdiagram
+    public partial class Seating
     {
-        public string name { get; set; }
-        public int principal_id { get; set; }
-        public int diagram_id { get; set; }
-        public Nullable<int> version { get; set; }
-        public byte[] definition { get; set; }
+        public Seating()
+        {
+            this.SessionBookings = new HashSet<SessionBooking>();
+        }
+    
+        public int SeatingID { get; set; }
+        public int CineplexID { get; set; }
+    
+        public virtual Cineplex Cineplex { get; set; }
+        public virtual ICollection<SessionBooking> SessionBookings { get; set; }
     }
 }
