@@ -17,7 +17,7 @@ namespace Assignment_2.Controllers
         // GET: MovieSessions
         public ActionResult Index(string sessions, string searchString)
         {
-            /*var movieSessions = db.MovieSessions.Include(m => m.CineplexMovie).Include(m => m.MovieID);
+            var movieSessions = db.MovieSessions.Include(m => m.Cineplex).Include(m => m.Movie);
             if (!String.IsNullOrEmpty(sessions))
                 if (sessions != ("All"))
                 {
@@ -30,8 +30,7 @@ namespace Assignment_2.Controllers
                 movieSessions = movieSessions.Where(s => s.Movie.Title.Contains(searchString));
             }
             ViewBag.Sessions = new SelectList(db.Cineplexes.Select(c => c.Location));
-            return View(movieSessions.ToList());*/
-            return View(db.MovieSessions.ToList());
+            return View(movieSessions.ToList());
         }
 
         // GET: MovieSessions/Details/5

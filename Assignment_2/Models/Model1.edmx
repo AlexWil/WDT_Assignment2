@@ -51,8 +51,7 @@
           <Property Name="SessionID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="CineplexID" Type="int" Nullable="false" />
           <Property Name="MovieID" Type="int" Nullable="false" />
-          <Property Name="SessionDay" Type="datetime" Nullable="false" />
-          <Property Name="SessionTime" Type="time" Precision="7" Nullable="false" />
+          <Property Name="Time" Type="datetime" Nullable="false" />
         </EntityType>
         <EntityType Name="Seating">
           <Key>
@@ -259,7 +258,7 @@
             <End Role="Seating" EntitySet="Seatings" />
             <End Role="SessionBooking" EntitySet="SessionBookings" />
           </AssociationSet>
-        </EntityContainer>
+          </EntityContainer>
         <EntityType Name="MovieSession">
           <Key>
             <PropertyRef Name="SessionID" />
@@ -267,8 +266,7 @@
           <Property Name="SessionID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="CineplexID" Type="Int32" Nullable="false" />
           <Property Name="MovieID" Type="Int32" Nullable="false" />
-          <Property Name="SessionDay" Type="DateTime" Nullable="false" Precision="3" />
-          <Property Name="SessionTime" Type="Time" Nullable="false" Precision="7" />
+          <Property Name="Time" Type="DateTime" Nullable="false" Precision="3" />
           <NavigationProperty Name="Cineplex" Relationship="A2_WDTModel.FK__MovieSess__Cinep__49C3F6B7" FromRole="MovieSession" ToRole="Cineplex" />
           <NavigationProperty Name="Movie" Relationship="A2_WDTModel.FK__MovieSess__Movie__4AB81AF0" FromRole="MovieSession" ToRole="Movie" />
           <NavigationProperty Name="SessionBookings" Relationship="A2_WDTModel.FK__SessionBo__Sessi__4D94879B" FromRole="MovieSession" ToRole="SessionBooking" />
@@ -335,7 +333,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-      </Schema>
+        </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
     <edmx:Mappings>
@@ -395,8 +393,7 @@
           <EntitySetMapping Name="MovieSessions">
             <EntityTypeMapping TypeName="A2_WDTModel.MovieSession">
               <MappingFragment StoreEntitySet="MovieSessions">
-                <ScalarProperty Name="SessionTime" ColumnName="SessionTime" />
-                <ScalarProperty Name="SessionDay" ColumnName="SessionDay" />
+                <ScalarProperty Name="Time" ColumnName="Time" />
                 <ScalarProperty Name="MovieID" ColumnName="MovieID" />
                 <ScalarProperty Name="CineplexID" ColumnName="CineplexID" />
                 <ScalarProperty Name="SessionID" ColumnName="SessionID" />

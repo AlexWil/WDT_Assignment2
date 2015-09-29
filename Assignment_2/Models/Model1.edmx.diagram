@@ -11,13 +11,13 @@
         <EntityTypeShape EntityType="A2_WDTModel.MovieComingSoon" Width="1.5" PointX="8.625" PointY="4.5" IsExpanded="true" />
         <EntityTypeShape EntityType="A2_WDTModel.Seating" Width="1.5" PointX="0.75" PointY="5.125" IsExpanded="true" />
         <AssociationConnector Association="A2_WDTModel.FK__Seating__Cineple__38996AB5" ManuallyRouted="false" />
-        <EntityTypeShape EntityType="A2_WDTModel.MovieSession" Width="1.5" PointX="3.125" PointY="2.125" />
+        <EntityTypeShape EntityType="A2_WDTModel.MovieSession" Width="1.5" PointX="3.125" PointY="2.375" />
         <EntityTypeShape EntityType="A2_WDTModel.SessionBooking" Width="1.5" PointX="3.125" PointY="5.125" />
         <AssociationConnector Association="A2_WDTModel.FK__MovieSess__Cinep__49C3F6B7" />
         <AssociationConnector Association="A2_WDTModel.FK__MovieSess__Movie__4AB81AF0" />
         <AssociationConnector Association="A2_WDTModel.FK__SessionBo__Sessi__4D94879B" />
         <AssociationConnector Association="A2_WDTModel.FK__SessionBooking__4E88ABD4" />
-      </Diagram>
+        </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>
 </edmx:Edmx>
