@@ -1,4 +1,4 @@
-﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="WebAdministration.Master.cs" Inherits="Assignment2_2.Site1" %>
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="WebAdministration.Master.cs" Inherits="Assignment2_2.WebAdministration" %>
 
 <!DOCTYPE html>
 
@@ -7,33 +7,42 @@
     <title></title>
     <asp:ContentPlaceHolder ID="head" runat="server">
     </asp:ContentPlaceHolder>
-    <link rel="stylesheet" href="Content/bootstrap.min.css" />
+    <link rel="stylesheet" href="Content/bootstrap.min.css"/>
     <script src="Scripts/jquery-1.9.1.min.js"></script>
     <script src="Scripts/bootstrap.min.js"></script>
 </head>
 <body>
-    <form id="form1" runat="server">
-        <div>
-            <nav class="navbar navbar-inverse ">
-                <div class="container-fluid">
-                    <div class="navbar-header">
-                        <a class="navbar-brand" href="#">Cineplex Web Administration</a>
-                    </div>
-                    <div>
-                        <ul class="nav navbar-nav">
-                            <li runat="server" ID="home"><a href="Default.aspx">Home</a></li>
-                            <li runat="server" ID="movies"><a href="Movies.aspx">Movies</a></li>
-                            <li runat="server" ID="events"><a href="Events.aspx">Events</a></li>
-                        </ul>
-                        <ul class="nav navbar-nav navbar-right">
-                            <li><a href="Logout.aspx"><span class="glyphicon glyphicon-log-out"></span> Logout</a></li>
-                        </ul>
-                    </div>
+<form id="form1" runat="server">
+    <div>
+        <nav class="navbar navbar-inverse ">
+            <div class="container-fluid">
+                <div class="navbar-header">
+                    <a class="navbar-brand" href="#">Cineplex Web Administration</a>
                 </div>
-            </nav>
-            <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
-            </asp:ContentPlaceHolder>
-        </div>
-    </form>
+                <div>
+                    <ul class="nav navbar-nav">
+                        <li runat="server" id="home">
+                            <a href="Default.aspx">Home</a>
+                        </li>
+                        <li runat="server" id="movies">
+                            <a href="Movies.aspx">Movies</a>
+                        </li>
+                        <li runat="server" id="events">
+                            <a href="Events.aspx">Events</a>
+                        </li>
+                    </ul>
+                    <ul class="nav navbar-nav navbar-right">
+                        <li>
+                            <a href="Logout.aspx"><span class="glyphicon glyphicon-log-out"></span> Logout</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+        </nav>
+        <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
+        </asp:ContentPlaceHolder>
+    </div>
+</form>
 </body>
 </html>

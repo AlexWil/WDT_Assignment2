@@ -36,9 +36,10 @@ namespace Assignment2_2 {
         /// <remarks>
         /// Auto-generated property.
         /// </remarks>
-        public new Assignment2_2.Site1 Master {
+        public new Assignment2_2.WebAdministration Master
+        {
             get {
-                return ((Assignment2_2.Site1)(base.Master));
+                return ((Assignment2_2.WebAdministration)(base.Master));
             }
         }
     }

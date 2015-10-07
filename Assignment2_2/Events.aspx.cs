@@ -6,7 +6,7 @@ namespace Assignment2_2
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            Master.EventsNavigation.Attributes["class"] = "active";
+            Master.events.Attributes["class"] = "active";
         }
     }
 }

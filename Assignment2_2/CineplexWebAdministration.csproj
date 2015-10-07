@@ -83,6 +83,7 @@
       <SubType>Designer</SubType>
     </Content>
     <Content Include="Scripts\jquery-1.9.1.min.map" />
+    <Content Include="WebAdministration.Master" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Events.aspx.cs">
@@ -114,13 +115,6 @@
       <DependentUpon>Movies.aspx</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="WebAdministration.Master.cs">
-      <DependentUpon>WebAdministration.Master</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="WebAdministration.Master.designer.cs">
-      <DependentUpon>WebAdministration.Master</DependentUpon>
-    </Compile>
     <Compile Include="Logout.aspx.cs">
       <DependentUpon>Logout.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -128,9 +122,15 @@
     <Compile Include="Logout.aspx.designer.cs">
       <DependentUpon>Logout.aspx</DependentUpon>
     </Compile>
+    <Compile Include="WebAdministration.Master.cs">
+      <DependentUpon>WebAdministration.Master</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="WebAdministration.Master.designer.cs">
+      <DependentUpon>WebAdministration.Master</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="WebAdministration.Master" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
