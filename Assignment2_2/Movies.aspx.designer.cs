@@ -10,24 +10,36 @@
 namespace Assignment2_2 {
     
     
-    public partial class OpenAuthProviders {
+    public partial class Movies {
         
         /// <summary>
-        /// RegisterHyperLink control.
+        /// GridView1 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.HyperLink RegisterHyperLink;
+        protected global::System.Web.UI.WebControls.GridView GridView1;
         
         /// <summary>
-        /// OpenAuthLogin control.
+        /// SqlDataSource1 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.UserControl OpenAuthLogin;
+        protected global::System.Web.UI.WebControls.SqlDataSource SqlDataSource1;
+        
+        /// <summary>
+        /// Master property.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated property.
+        /// </remarks>
+        public new Assignment2_2.Site1 Master {
+            get {
+                return ((Assignment2_2.Site1)(base.Master));
+            }
+        }
     }
 }

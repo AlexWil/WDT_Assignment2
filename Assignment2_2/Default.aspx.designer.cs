@@ -7,18 +7,21 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace Assignment2_2.Account {
+namespace Assignment2_2 {
     
     
-    public partial class OpenAuthProviders {
+    public partial class Home {
         
         /// <summary>
-        /// providerDetails control.
+        /// Master property.
         /// </summary>
         /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
+        /// Auto-generated property.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.ListView providerDetails;
+        public new Assignment2_2.Site1 Master {
+            get {
+                return ((Assignment2_2.Site1)(base.Master));
+            }
+        }
     }
 }

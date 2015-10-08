@@ -10,6 +10,18 @@
 namespace Assignment2_2 {
     
     
-    public partial class WebForm1 {
+    public partial class Events {
+        
+        /// <summary>
+        /// Master property.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated property.
+        /// </remarks>
+        public new Assignment2_2.Site1 Master {
+            get {
+                return ((Assignment2_2.Site1)(base.Master));
+            }
+        }
     }
 }
