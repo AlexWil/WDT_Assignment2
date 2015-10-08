@@ -13,10 +13,10 @@ namespace CineplexCustomerWebsite.Models
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
     
-    public partial class CineplexEntities : DbContext
+    public partial class DefaultConnection : DbContext
     {
-        public CineplexEntities()
-            : base("name=CineplexEntities")
+        public DefaultConnection()
+            : base("name=DefaultConnection")
         {
         }
     
@@ -25,6 +25,14 @@ namespace CineplexCustomerWebsite.Models
             throw new UnintentionalCodeFirstException();
         }
     
+        public virtual DbSet<Cineplex> Cineplex { get; set; }
+        public virtual DbSet<CineplexMovie> CineplexMovie { get; set; }
+        public virtual DbSet<Enquiry> Enquiry { get; set; }
+        public virtual DbSet<Event> Event { get; set; }
+        public virtual DbSet<Movie> Movie { get; set; }
+        public virtual DbSet<MovieComingSoon> MovieComingSoon { get; set; }
+        public virtual DbSet<MovieSession> MovieSession { get; set; }
         public virtual DbSet<Seating> Seating { get; set; }
+        public virtual DbSet<SessionBooking> SessionBooking { get; set; }
     }
 }

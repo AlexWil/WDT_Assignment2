@@ -8,35 +8,46 @@
 <h2>Booking</h2>
 
 <div class="jumbotron">
-    <table class="table">
+    <table style="margin-left: auto; margin-right: auto">
 
-        @for (int i = 1; i < ViewBag.SeatsInRow; i++)
+
+        <img src="~/Content/Icons/Screen.png" width="400" height="10" style="display: block; margin-left: auto; margin-right: auto"/><br/>
+        @for (int i = 0; i < ViewBag.maxSeatsPerRow+2; i++)
         {
-            <col width="60">
+            <col width="50">
         }
 
         @foreach (var row in ViewBag.Rows)
         {
             <tr>
-                @foreach (var seat in Model.Where(seat => seat.SessionID == 1 && seat.RowID == row))
+                @{ var seatsInRow = Model.Where(seat => seat.SessionID == 1 && seat.Row == row);}
+                @{ int columnsToSkip = (ViewBag.maxSeatsPerRow - seatsInRow.Count())/2;}
+                @for (int i = 0; i < columnsToSkip; i++)
+                {
+                    <td></td>
+                }
+                @foreach (var seat in seatsInRow)
                 {
                     <td>
-                        @if ((bool)seat.isTaken)
+                        @if ((bool) seat.IsTaken)
                         {
-                            <img src="~/Content/Icons/seatTaken.png" width="35" height="35">
+                            using (Html.BeginForm())
+                            {
+                                <input type="image" src="~/Content/Icons/seatTaken.png">
+                            }
                         }
-                        else if (((IEnumerable<int>)ViewBag.ChosenSeatIDs).Contains(seat.ID))
+                        else if (((IEnumerable<int>) ViewBag.ChosenSeatIDs).Contains(seat.SeatingID))
                         {
                             using (Html.BeginForm("DeselectSeat", "Seating", seat))
                             {
-                                <input type="image" src="~/Content/Icons/seatChosen.png" width="35" height="35">
+                                <input type="image" src="~/Content/Icons/seatChosen.png">
                             }
                         }
                         else
                         {
                             using (Html.BeginForm("SelectSeat", "Seating", seat))
                             {
-                                <input type="image" src="~/Content/Icons/seatAvailable.png" width="35" height="35">
+                                <input type="image" src="~/Content/Icons/seatAvailable.png">
                             }
                         }
                     </td>
@@ -45,8 +56,7 @@
         }
     </table>
 </div>
-
-
+<br/>
 <div class="row">
     <div class="col-sm-2">
         @using (Html.BeginForm("CancelBooking", "Seating"))
@@ -62,4 +72,3 @@
     </div>
     <div class="col-sm-8"></div>
 </div>
-

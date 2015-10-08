@@ -124,29 +124,54 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Models\Seating.Context.cs">
+    <Compile Include="Models\Cineplex.cs">
+      <DependentUpon>CineplexModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\CineplexModel.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>Seating.Context.tt</DependentUpon>
+      <DependentUpon>CineplexModel.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\CineplexModel.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>CineplexModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\CineplexModel.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>CineplexModel.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="Models\CineplexMovie.cs">
+      <DependentUpon>CineplexModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Enquiry.cs">
+      <DependentUpon>CineplexModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Event.cs">
+      <DependentUpon>CineplexModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Movie.cs">
+      <DependentUpon>CineplexModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\MovieComingSoon.cs">
+      <DependentUpon>CineplexModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\MovieSession.cs">
+      <DependentUpon>CineplexModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Seating.cs">
-      <DependentUpon>Seating.tt</DependentUpon>
+      <DependentUpon>CineplexModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\Seating.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>Seating.edmx</DependentUpon>
-    </Compile>
-    <Compile Include="Models\Seating1.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>Seating.tt</DependentUpon>
+    <Compile Include="Models\SessionBooking.cs">
+      <DependentUpon>CineplexModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\custom.css" />
     <Content Include="Content\Icons\seatAvailable.png" />
     <Content Include="Content\Icons\seatChosen.png" />
     <Content Include="Content\Icons\seatTaken.png" />
@@ -156,22 +181,22 @@
     <Content Include="Content\Site.css" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
-    <EntityDeploy Include="Models\Seating.edmx">
+    <EntityDeploy Include="Models\CineplexModel.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>Seating.Designer.cs</LastGenOutput>
+      <LastGenOutput>CineplexModel.Designer.cs</LastGenOutput>
     </EntityDeploy>
-    <Content Include="Models\Seating.Context.tt">
+    <Content Include="Models\CineplexModel.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>Seating.edmx</DependentUpon>
-      <LastGenOutput>Seating.Context.cs</LastGenOutput>
+      <DependentUpon>CineplexModel.edmx</DependentUpon>
+      <LastGenOutput>CineplexModel.Context.cs</LastGenOutput>
     </Content>
-    <Content Include="Models\Seating.edmx.diagram">
-      <DependentUpon>Seating.edmx</DependentUpon>
+    <Content Include="Models\CineplexModel.edmx.diagram">
+      <DependentUpon>CineplexModel.edmx</DependentUpon>
     </Content>
-    <Content Include="Models\Seating.tt">
+    <Content Include="Models\CineplexModel.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>Seating.edmx</DependentUpon>
-      <LastGenOutput>Seating1.cs</LastGenOutput>
+      <DependentUpon>CineplexModel.edmx</DependentUpon>
+      <LastGenOutput>CineplexModel.cs</LastGenOutput>
     </Content>
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
@@ -185,6 +210,7 @@
     <Content Include="Scripts\respond.js" />
     <Content Include="Scripts\respond.min.js" />
     <Content Include="Scripts\_references.js" />
+    <Content Include="SQL Scripts\CreateTables.sql" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>

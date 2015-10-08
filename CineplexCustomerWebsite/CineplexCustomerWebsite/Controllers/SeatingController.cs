@@ -13,7 +13,7 @@ namespace CineplexCustomerWebsite.Controllers
 {
     public class SeatingController : Controller
     {
-        private CineplexEntities db = new CineplexEntities();
+        private DefaultConnection db = new DefaultConnection();
 
         public ActionResult CancelBooking()
         {
@@ -32,20 +32,25 @@ namespace CineplexCustomerWebsite.Controllers
         {
             List<string> rows = db.Seating
                 .Where(seat => seat.SessionID == 1)
-                .Select((seat => seat.RowID))
+                .Select((seat => seat.Row))
                 .Distinct()
                 .ToList();
 
             ViewBag.Rows = rows;
             String firstRow = rows[0];
-            ViewBag.SeatsInRow = db.Seating.Count(seat => seat.SessionID == 1 && seat.RowID == firstRow);
+            ViewBag.SeatsInRow = db.Seating.Count(seat => seat.SessionID == 1 && seat.Row == firstRow);
+
+            //Maximum is needed to calculate optimal layout of table
+            List<int> seatsPerRow = new List<int>();
+            rows.ForEach(row => seatsPerRow.Add(db.Seating.Count(seat => seat.SessionID == 1 && seat.Row == row)));
+            ViewBag.maxSeatsPerRow=seatsPerRow.Max();
 
             if (Session["ChosenSeats"] == null)
             {
                 Session["ChosenSeats"] = new List<Seating>();
             }
 
-            IEnumerable<int> chosenSeatIDs = (Session["ChosenSeats"] as List<Seating>).Select(chosenSeat => chosenSeat.ID);
+            IEnumerable<int> chosenSeatIDs = (Session["ChosenSeats"] as List<Seating>).Select(chosenSeat => chosenSeat.SeatingID);
             ViewBag.ChosenSeatIDs = chosenSeatIDs;
 
             return View(db.Seating.ToList());
@@ -62,7 +67,7 @@ namespace CineplexCustomerWebsite.Controllers
         {
            foreach (Seating seat in (Session["ChosenSeats"] as List<Seating>))
             {
-                if (seat.ID == seatToDeselect.ID)
+                if (seat.SeatingID == seatToDeselect.SeatingID)
                 {
                     seatToDeselect = seat;
                 }

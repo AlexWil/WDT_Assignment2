@@ -25,6 +25,5 @@ E:\Projekte\RMIT\WDT_Assignment2\CineplexCustomerWebsite\CineplexCustomerWebsite
 E:\Projekte\RMIT\WDT_Assignment2\CineplexCustomerWebsite\CineplexCustomerWebsite\bin\System.Web.WebPages.Razor.xml
 E:\Projekte\RMIT\WDT_Assignment2\CineplexCustomerWebsite\CineplexCustomerWebsite\bin\Antlr3.Runtime.pdb
 E:\Projekte\RMIT\WDT_Assignment2\CineplexCustomerWebsite\CineplexCustomerWebsite\bin\Newtonsoft.Json.xml
-E:\Projekte\RMIT\WDT_Assignment2\CineplexCustomerWebsite\CineplexCustomerWebsite\obj\Debug\CineplexCustomerWebsite.csprojResolveAssemblyReference.cache
 E:\Projekte\RMIT\WDT_Assignment2\CineplexCustomerWebsite\CineplexCustomerWebsite\obj\Debug\CineplexCustomerWebsite.dll
 E:\Projekte\RMIT\WDT_Assignment2\CineplexCustomerWebsite\CineplexCustomerWebsite\obj\Debug\CineplexCustomerWebsite.pdb

@@ -1,0 +1,184 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="CineplexModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="Cineplex">
+    <Key>
+      <PropertyRef Name="CineplexID" />
+    </Key>
+    <Property Name="CineplexID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Location" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="ShortDescription" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="LongDescription" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="ImageUrl" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="CineplexMovie" Relationship="Self.FK__CineplexM__Cinep__34C8D9D1" FromRole="Cineplex" ToRole="CineplexMovie" />
+  </EntityType>
+  <EntityType Name="CineplexMovie">
+    <Key>
+      <PropertyRef Name="CineplexID" />
+      <PropertyRef Name="MovieID" />
+    </Key>
+    <Property Name="CineplexID" Type="Int32" Nullable="false" />
+    <Property Name="MovieID" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="Cineplex" Relationship="Self.FK__CineplexM__Cinep__34C8D9D1" FromRole="CineplexMovie" ToRole="Cineplex" />
+    <NavigationProperty Name="Movie" Relationship="Self.FK__CineplexM__Movie__35BCFE0A" FromRole="CineplexMovie" ToRole="Movie" />
+    <NavigationProperty Name="MovieSession" Relationship="Self.FK__MovieSession__05D8E0BE" FromRole="CineplexMovie" ToRole="MovieSession" />
+  </EntityType>
+  <EntityType Name="Enquiry">
+    <Key>
+      <PropertyRef Name="EnquiryID" />
+    </Key>
+    <Property Name="EnquiryID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Email" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Message" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Event">
+    <Key>
+      <PropertyRef Name="EventID" />
+    </Key>
+    <Property Name="EventID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="EventTitle" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="CineplexID" Type="Int32" Nullable="false" />
+    <Property Name="EventDay" Type="DateTime" Nullable="false" Precision="0" />
+    <Property Name="EventTime" Type="Time" Nullable="false" Precision="7" />
+    <Property Name="ShortDescription" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="LongDescription" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Movie">
+    <Key>
+      <PropertyRef Name="MovieID" />
+    </Key>
+    <Property Name="MovieID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Title" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="ShortDescription" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="LongDescription" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="ImageUrl" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="Price" Type="Decimal" Precision="19" Scale="4" Nullable="false" />
+    <NavigationProperty Name="CineplexMovie" Relationship="Self.FK__CineplexM__Movie__35BCFE0A" FromRole="Movie" ToRole="CineplexMovie" />
+  </EntityType>
+  <EntityType Name="MovieComingSoon">
+    <Key>
+      <PropertyRef Name="MovieComingSoonID" />
+    </Key>
+    <Property Name="MovieComingSoonID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Title" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="ShortDescription" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="LongDescription" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="ImageUrl" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="MovieSession">
+    <Key>
+      <PropertyRef Name="SessionID" />
+    </Key>
+    <Property Name="SessionID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="CineplexID" Type="Int32" Nullable="false" />
+    <Property Name="MovieID" Type="Int32" Nullable="false" />
+    <Property Name="SessionDateTime" Type="DateTime" Nullable="false" Precision="0" />
+    <NavigationProperty Name="CineplexMovie" Relationship="Self.FK__MovieSession__05D8E0BE" FromRole="MovieSession" ToRole="CineplexMovie" />
+    <NavigationProperty Name="Seating" Relationship="Self.FK__Seating__Session__08B54D69" FromRole="MovieSession" ToRole="Seating" />
+  </EntityType>
+  <EntityType Name="Seating">
+    <Key>
+      <PropertyRef Name="SeatingID" />
+    </Key>
+    <Property Name="SeatingID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Row" Type="String" MaxLength="2" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="SeatNumber" Type="Int32" Nullable="false" />
+    <Property Name="SessionID" Type="Int32" Nullable="false" />
+    <Property Name="IsTaken" Type="Boolean" Nullable="false" />
+    <NavigationProperty Name="MovieSession" Relationship="Self.FK__Seating__Session__08B54D69" FromRole="Seating" ToRole="MovieSession" />
+    <NavigationProperty Name="SessionBooking" Relationship="Self.SessionBookingSeating" FromRole="Seating" ToRole="SessionBooking" />
+  </EntityType>
+  <EntityType Name="SessionBooking">
+    <Key>
+      <PropertyRef Name="BookingID" />
+    </Key>
+    <Property Name="BookingID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="SessionID" Type="Int32" Nullable="false" />
+    <Property Name="UserEmail" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+    <NavigationProperty Name="Seating" Relationship="Self.SessionBookingSeating" FromRole="SessionBooking" ToRole="Seating" />
+  </EntityType>
+  <Association Name="FK__CineplexM__Cinep__34C8D9D1">
+    <End Role="Cineplex" Type="Self.Cineplex" Multiplicity="1" />
+    <End Role="CineplexMovie" Type="Self.CineplexMovie" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Cineplex">
+        <PropertyRef Name="CineplexID" />
+      </Principal>
+      <Dependent Role="CineplexMovie">
+        <PropertyRef Name="CineplexID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__CineplexM__Movie__35BCFE0A">
+    <End Role="Movie" Type="Self.Movie" Multiplicity="1" />
+    <End Role="CineplexMovie" Type="Self.CineplexMovie" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Movie">
+        <PropertyRef Name="MovieID" />
+      </Principal>
+      <Dependent Role="CineplexMovie">
+        <PropertyRef Name="MovieID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__MovieSession__05D8E0BE">
+    <End Role="CineplexMovie" Type="Self.CineplexMovie" Multiplicity="1" />
+    <End Role="MovieSession" Type="Self.MovieSession" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="CineplexMovie">
+        <PropertyRef Name="CineplexID" />
+        <PropertyRef Name="MovieID" />
+      </Principal>
+      <Dependent Role="MovieSession">
+        <PropertyRef Name="CineplexID" />
+        <PropertyRef Name="MovieID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Seating__Session__08B54D69">
+    <End Role="MovieSession" Type="Self.MovieSession" Multiplicity="1" />
+    <End Role="Seating" Type="Self.Seating" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="MovieSession">
+        <PropertyRef Name="SessionID" />
+      </Principal>
+      <Dependent Role="Seating">
+        <PropertyRef Name="SessionID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="SessionBookingSeating">
+    <End Role="SessionBooking" Type="Self.SessionBooking" Multiplicity="*" />
+    <End Role="Seating" Type="Self.Seating" Multiplicity="*" />
+  </Association>
+  <EntityContainer Name="DefaultConnection" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="Cineplex" EntityType="Self.Cineplex" />
+    <EntitySet Name="CineplexMovie" EntityType="Self.CineplexMovie" />
+    <EntitySet Name="Enquiry" EntityType="Self.Enquiry" />
+    <EntitySet Name="Event" EntityType="Self.Event" />
+    <EntitySet Name="Movie" EntityType="Self.Movie" />
+    <EntitySet Name="MovieComingSoon" EntityType="Self.MovieComingSoon" />
+    <EntitySet Name="MovieSession" EntityType="Self.MovieSession" />
+    <EntitySet Name="Seating" EntityType="Self.Seating" />
+    <EntitySet Name="SessionBooking" EntityType="Self.SessionBooking" />
+    <AssociationSet Name="FK__CineplexM__Cinep__34C8D9D1" Association="Self.FK__CineplexM__Cinep__34C8D9D1">
+      <End Role="Cineplex" EntitySet="Cineplex" />
+      <End Role="CineplexMovie" EntitySet="CineplexMovie" />
+    </AssociationSet>
+    <AssociationSet Name="FK__CineplexM__Movie__35BCFE0A" Association="Self.FK__CineplexM__Movie__35BCFE0A">
+      <End Role="Movie" EntitySet="Movie" />
+      <End Role="CineplexMovie" EntitySet="CineplexMovie" />
+    </AssociationSet>
+    <AssociationSet Name="FK__MovieSession__05D8E0BE" Association="Self.FK__MovieSession__05D8E0BE">
+      <End Role="CineplexMovie" EntitySet="CineplexMovie" />
+      <End Role="MovieSession" EntitySet="MovieSession" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Seating__Session__08B54D69" Association="Self.FK__Seating__Session__08B54D69">
+      <End Role="MovieSession" EntitySet="MovieSession" />
+      <End Role="Seating" EntitySet="Seating" />
+    </AssociationSet>
+    <AssociationSet Name="SessionBookingSeating" Association="Self.SessionBookingSeating">
+      <End Role="SessionBooking" EntitySet="SessionBooking" />
+      <End Role="Seating" EntitySet="Seating" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

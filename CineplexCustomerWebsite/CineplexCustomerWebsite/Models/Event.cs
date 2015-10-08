@@ -12,20 +12,14 @@ namespace CineplexCustomerWebsite.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class Seating
+    public partial class Event
     {
-        public Seating()
-        {
-            this.SessionBooking = new HashSet<SessionBooking>();
-        }
-    
-        public int SeatingID { get; set; }
-        public string Row { get; set; }
-        public int SeatNumber { get; set; }
-        public int SessionID { get; set; }
-        public bool IsTaken { get; set; }
-    
-        public virtual MovieSession MovieSession { get; set; }
-        public virtual ICollection<SessionBooking> SessionBooking { get; set; }
+        public int EventID { get; set; }
+        public string EventTitle { get; set; }
+        public int CineplexID { get; set; }
+        public System.DateTime EventDay { get; set; }
+        public System.TimeSpan EventTime { get; set; }
+        public string ShortDescription { get; set; }
+        public string LongDescription { get; set; }
     }
 }
