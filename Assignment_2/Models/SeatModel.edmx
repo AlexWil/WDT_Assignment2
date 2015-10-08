@@ -1,0 +1,85 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="CineplexModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'Cineplex.dbo.Seating' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="Seating">
+          <Key>
+            <PropertyRef Name="Seating ID" />
+            <PropertyRef Name="Cineplex ID" />
+            <PropertyRef Name="Seat taken" />
+          </Key>
+          <Property Name="Seating ID" Type="nchar" MaxLength="10" Nullable="false" />
+          <Property Name="Cineplex ID" Type="int" Nullable="false" />
+          <Property Name="Seat taken" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityContainer Name="CineplexModelStoreContainer">
+          <EntitySet Name="Seating" EntityType="Self.Seating" store:Type="Tables" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [Seating].[Seating ID] AS [Seating ID], 
+    [Seating].[Cineplex ID] AS [Cineplex ID], 
+    [Seating].[Seat taken] AS [Seat taken]
+    FROM [dbo].[Seating] AS [Seating]</DefiningQuery>
+          </EntitySet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="CineplexModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Seating">
+          <Key>
+            <PropertyRef Name="Seating_ID" />
+            <PropertyRef Name="Cineplex_ID" />
+            <PropertyRef Name="Seat_taken" />
+          </Key>
+          <Property Name="Seating_ID" Type="String" MaxLength="10" FixedLength="true" Unicode="true" Nullable="false" />
+          <Property Name="Cineplex_ID" Type="Int32" Nullable="false" />
+          <Property Name="Seat_taken" Type="Boolean" Nullable="false" />
+        </EntityType>
+        <EntityContainer Name="CineplexEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Seating" EntityType="Self.Seating" />
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="CineplexModelStoreContainer" CdmEntityContainer="CineplexEntities">
+          <EntitySetMapping Name="Seating">
+            <EntityTypeMapping TypeName="CineplexModel.Seating">
+              <MappingFragment StoreEntitySet="Seating">
+                <ScalarProperty Name="Seating_ID" ColumnName="Seating ID" />
+                <ScalarProperty Name="Cineplex_ID" ColumnName="Cineplex ID" />
+                <ScalarProperty Name="Seat_taken" ColumnName="Seat taken" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
