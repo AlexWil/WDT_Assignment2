@@ -1,0 +1,65 @@
+﻿@using CineplexCustomerWebsite.Models
+@model IEnumerable<CineplexCustomerWebsite.Models.Seating>
+
+@{
+    ViewBag.Title = "Booking";
+}
+
+<h2>Booking</h2>
+
+<div class="jumbotron">
+    <table class="table">
+
+        @for (int i = 1; i < ViewBag.SeatsInRow; i++)
+        {
+            <col width="60">
+        }
+
+        @foreach (var row in ViewBag.Rows)
+        {
+            <tr>
+                @foreach (var seat in Model.Where(seat => seat.SessionID == 1 && seat.RowID == row))
+                {
+                    <td>
+                        @if ((bool)seat.isTaken)
+                        {
+                            <img src="~/Content/Icons/seatTaken.png" width="35" height="35">
+                        }
+                        else if (((IEnumerable<int>)ViewBag.ChosenSeatIDs).Contains(seat.ID))
+                        {
+                            using (Html.BeginForm("DeselectSeat", "Seating", seat))
+                            {
+                                <input type="image" src="~/Content/Icons/seatChosen.png" width="35" height="35">
+                            }
+                        }
+                        else
+                        {
+                            using (Html.BeginForm("SelectSeat", "Seating", seat))
+                            {
+                                <input type="image" src="~/Content/Icons/seatAvailable.png" width="35" height="35">
+                            }
+                        }
+                    </td>
+                }
+            </tr>
+        }
+    </table>
+</div>
+
+
+<div class="row">
+    <div class="col-sm-2">
+        @using (Html.BeginForm("CancelBooking", "Seating"))
+        {
+            <input type="submit" class="btn btn-success" value="Confirm" />
+        }
+    </div>
+    <div class="col-sm-2">
+        @using (Html.BeginForm("ConfirmBooking", "Seating"))
+        {
+            <input type="submit" class="btn btn-danger" value="Cancel" />
+        }
+    </div>
+    <div class="col-sm-8"></div>
+</div>
+

@@ -1,0 +1,16 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="SeatingModelStoreContainer" CdmEntityContainer="CineplexEntities">
+    <EntitySetMapping Name="Seating">
+      <EntityTypeMapping TypeName="SeatingModel.Seating">
+        <MappingFragment StoreEntitySet="Seating">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="RowID" ColumnName="RowID" />
+          <ScalarProperty Name="SeatNumber" ColumnName="SeatNumber" />
+          <ScalarProperty Name="SessionID" ColumnName="SessionID" />
+          <ScalarProperty Name="isTaken" ColumnName="isTaken" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>
