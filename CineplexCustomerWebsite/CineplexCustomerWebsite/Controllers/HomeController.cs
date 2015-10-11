@@ -24,8 +24,9 @@ namespace CineplexCustomerWebsite.Controllers
             return View();
         }
 
-        public ActionResult Cineplex()
+        public ActionResult Cineplexes()
         {
+            
             return View(db.Cineplex.ToList());
         }
 

@@ -24,6 +24,7 @@ namespace CineplexCustomerWebsite.Controllers
         public ActionResult ConfirmBooking()
         {
             Session["ChosenSeats"] = null;
+            // session selected variable Session["SessionSelected"]
             return RedirectToAction("Index", "Home");
         }
 
