@@ -1,0 +1,67 @@
+﻿@model IEnumerable<CineplexCustomerWebsite.Models.SessionBooking>
+
+@{
+    ViewBag.Title = "ManageBookings";
+}
+
+<h2>Manage Bookings</h2>
+
+<br />
+
+@using (Html.BeginForm("MovieSessions", "Movies", FormMethod.Get))
+{
+    <p>
+        Search By Email: @Html.TextBox("EmailSearch", "ManageBookings", new { type = "email", placeholder = "example01@email.com" })
+        <input class="btn-default" type="submit" value="Search" />
+    </p>
+}
+
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.BookingID)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.UserEmail)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.SessionID)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Seating)
+        </th>
+        
+
+        <th>
+
+        </th>
+        <th></th>
+    </tr>
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+
+            </td>
+            <td>
+
+            </td>
+
+            <td>
+
+            </td>
+            <td>
+
+            </td>
+            <td>
+
+            </td>
+            
+            <td>
+                @Html.ActionLink("BOOK NOW", "MovieBooking", new {  })
+            </td>
+
+        </tr>
+    }
+</table>
+

@@ -13,12 +13,14 @@ namespace CineplexCustomerWebsite.Controllers
 
         private DefaultConnection db = new DefaultConnection();
 
-        public ActionResult MovieSessions(string SortOrder, string CurrentFilter, string SearchString, int? page)
+        public ActionResult MovieSessions (string SortOrder, string CurrentFilter, string SearchString, int? page, string Cineplexes)
         {
 
             ViewBag.CurrentSort = SortOrder;
-            ViewBag.NameSortParm = String.IsNullOrEmpty(SortOrder) ? "name_desc" : "";
+            ViewBag.TitleSortParm = String.IsNullOrEmpty(SortOrder) ? "title_desc" : "";
             ViewBag.DateSortParm = SortOrder == "Date" ? "date_desc" : "Date";
+
+            ViewBag.Cineplex = Cineplexes;
 
             if (SearchString != null)
             {
@@ -29,36 +31,55 @@ namespace CineplexCustomerWebsite.Controllers
                 SearchString = CurrentFilter;
             }
 
+            var CineplexList = new List<string>();
+
+            var CineplexQry = from c in db.Cineplex
+                              orderby c.Location
+                              select c.Location;
+
+            CineplexList.AddRange(CineplexQry.Distinct());
+            ViewBag.Cineplexes = new SelectList(CineplexList);
+
             ViewBag.CurrentFilter = SearchString;
+            ViewBag.CineplexFilter = Cineplexes;
 
             var MovieSessions = from ms in db.MovieSession
                                 select ms;
 
-            if(!String.IsNullOrEmpty(SearchString))
+
+            if (!String.IsNullOrEmpty(SearchString))
             {
                 MovieSessions = MovieSessions.Where(m => m.CineplexMovie.Movie.Title.Contains(SearchString));
+
             }
+
+            if (!String.IsNullOrEmpty(Cineplexes))
+            {
+                MovieSessions = MovieSessions.Where(m => m.CineplexMovie.Cineplex.Location == Cineplexes);
+
+            }
+            
 
             switch (SortOrder)
             {
-                case "name_desc":
-                    MovieSessions = MovieSessions.OrderBy(t => t.CineplexMovie.Movie.Title);
+                case "title_desc":
+                    MovieSessions = MovieSessions.OrderByDescending(m => m.CineplexMovie.Movie.Title);
                     break;
                 case "Date":
-                    MovieSessions = MovieSessions.OrderBy(d => d.SessionDateTime);
+                    MovieSessions = MovieSessions.OrderBy(m => m.SessionDateTime);
                     break;
                 case "date_desc":
-                    MovieSessions = MovieSessions.OrderByDescending(d => d.SessionDateTime);
+                    MovieSessions = MovieSessions.OrderByDescending(m => m.SessionDateTime);
                     break;
                 default:
-                    MovieSessions = MovieSessions.OrderBy(d => d.SessionDateTime);
+                    MovieSessions = MovieSessions.OrderBy(m => m.SessionDateTime);
                     break;
             }
 
             int PageSize = 5;
             int PageNumber = (page ?? 1);
 
-            return View(db.MovieSession.OrderBy(d => d.SessionDateTime).ToPagedList(PageNumber, PageSize));
+            return View(MovieSessions.ToPagedList(PageNumber, PageSize));
         }
 
         public ActionResult MovieBooking(int? id)

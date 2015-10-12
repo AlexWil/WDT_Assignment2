@@ -15,6 +15,25 @@ namespace CineplexCustomerWebsite.Controllers
     {
         private DefaultConnection db = new DefaultConnection();
 
+        // displays bookings for a users email
+        public ActionResult ManageBookings(string EmailSearch)
+        {
+
+            var AllBookings = from b in db.SessionBooking
+                              select b;
+
+            if (!String.IsNullOrEmpty(EmailSearch))
+            {
+                AllBookings = AllBookings.Where(b => b.UserEmail == EmailSearch);
+            }
+            else
+            {
+                AllBookings = null;
+            }
+
+            return View(AllBookings);
+        }
+
         public ActionResult CancelBooking()
         {
             Session["ChosenSeats"] = null;

@@ -246,6 +246,8 @@
     <Content Include="Views\Movies\MovieComingSoon.cshtml" />
     <Content Include="Views\Movies\MovieSessions.cshtml" />
     <Content Include="Views\Movies\MovieBooking.cshtml" />
+    <Content Include="Views\Seating\CancelBooking.cshtml" />
+    <Content Include="Views\Seating\ManageBookings.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
