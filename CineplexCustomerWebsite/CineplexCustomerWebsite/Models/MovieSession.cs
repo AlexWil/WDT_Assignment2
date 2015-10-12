@@ -23,6 +23,8 @@ public partial class MovieSession
 
         this.Seating = new HashSet<Seating>();
 
+        this.SessionBooking = new HashSet<SessionBooking>();
+
     }
 
 
@@ -39,6 +41,8 @@ public partial class MovieSession
     public virtual CineplexMovie CineplexMovie { get; set; }
 
     public virtual ICollection<Seating> Seating { get; set; }
+
+    public virtual ICollection<SessionBooking> SessionBooking { get; set; }
 
 }
 

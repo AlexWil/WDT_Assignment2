@@ -168,6 +168,18 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
+  <Association Name="fk_SessionID">
+    <End Role="MovieSession" Type="Self.MovieSession" Multiplicity="1" />
+    <End Role="SessionBooking" Type="Self.SessionBooking" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="MovieSession">
+        <PropertyRef Name="SessionID" />
+      </Principal>
+      <Dependent Role="SessionBooking">
+        <PropertyRef Name="SessionID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
   <EntityContainer Name="CineplexModelStoreContainer">
     <EntitySet Name="Cineplex" EntityType="Self.Cineplex" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="CineplexMovie" EntityType="Self.CineplexMovie" Schema="dbo" store:Type="Tables" />
@@ -202,6 +214,10 @@
     <AssociationSet Name="FK__SessionBo__Seati__0C85DE4D" Association="Self.FK__SessionBo__Seati__0C85DE4D">
       <End Role="Seating" EntitySet="Seating" />
       <End Role="SessionBookingSeating" EntitySet="SessionBookingSeating" />
+    </AssociationSet>
+    <AssociationSet Name="fk_SessionID" Association="Self.fk_SessionID">
+      <End Role="MovieSession" EntitySet="MovieSession" />
+      <End Role="SessionBooking" EntitySet="SessionBooking" />
     </AssociationSet>
   </EntityContainer>
 </Schema>

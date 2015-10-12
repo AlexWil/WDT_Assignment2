@@ -36,6 +36,8 @@ public partial class SessionBooking
 
     public virtual ICollection<Seating> Seating { get; set; }
 
+    public virtual MovieSession MovieSession { get; set; }
+
 }
 
 }
