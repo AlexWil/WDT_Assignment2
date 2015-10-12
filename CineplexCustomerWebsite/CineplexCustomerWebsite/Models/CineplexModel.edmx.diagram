@@ -19,6 +19,7 @@
         <AssociationConnector Association="CineplexModel.FK__MovieSession__05D8E0BE" ManuallyRouted="false" />
         <AssociationConnector Association="CineplexModel.FK__Seating__Session__08B54D69" ManuallyRouted="false" />
         <AssociationConnector Association="CineplexModel.SessionBookingSeating" ManuallyRouted="false" />
+        <AssociationConnector Association="CineplexModel.fk_SessionID" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

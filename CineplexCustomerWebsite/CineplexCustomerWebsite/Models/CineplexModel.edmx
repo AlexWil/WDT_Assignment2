@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="CineplexModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012.Azure" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="CineplexModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012.Azure" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="Cineplex">
           <Key>
             <PropertyRef Name="CineplexID" />
@@ -173,6 +173,18 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="fk_SessionID">
+          <End Role="MovieSession" Type="Self.MovieSession" Multiplicity="1" />
+          <End Role="SessionBooking" Type="Self.SessionBooking" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="MovieSession">
+              <PropertyRef Name="SessionID" />
+            </Principal>
+            <Dependent Role="SessionBooking">
+              <PropertyRef Name="SessionID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <EntityContainer Name="CineplexModelStoreContainer">
           <EntitySet Name="Cineplex" EntityType="Self.Cineplex" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="CineplexMovie" EntityType="Self.CineplexMovie" Schema="dbo" store:Type="Tables" />
@@ -208,9 +220,12 @@
             <End Role="Seating" EntitySet="Seating" />
             <End Role="SessionBookingSeating" EntitySet="SessionBookingSeating" />
           </AssociationSet>
+          <AssociationSet Name="fk_SessionID" Association="Self.fk_SessionID">
+            <End Role="MovieSession" EntitySet="MovieSession" />
+            <End Role="SessionBooking" EntitySet="SessionBooking" />
+          </AssociationSet>
         </EntityContainer>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="CineplexModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -288,6 +303,7 @@
           <Property Name="SessionDateTime" Type="DateTime" Nullable="false" Precision="0" />
           <NavigationProperty Name="CineplexMovie" Relationship="Self.FK__MovieSession__05D8E0BE" FromRole="MovieSession" ToRole="CineplexMovie" />
           <NavigationProperty Name="Seating" Relationship="Self.FK__Seating__Session__08B54D69" FromRole="MovieSession" ToRole="Seating" />
+          <NavigationProperty Name="SessionBooking" Relationship="CineplexModel.fk_SessionID" FromRole="MovieSession" ToRole="SessionBooking" />
         </EntityType>
         <EntityType Name="Seating">
           <Key>
@@ -309,6 +325,7 @@
           <Property Name="SessionID" Type="Int32" Nullable="false" />
           <Property Name="UserEmail" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
           <NavigationProperty Name="Seating" Relationship="Self.SessionBookingSeating" FromRole="SessionBooking" ToRole="Seating" />
+          <NavigationProperty Name="MovieSession" Relationship="CineplexModel.fk_SessionID" FromRole="SessionBooking" ToRole="MovieSession" />
         </EntityType>
         <Association Name="FK__CineplexM__Cinep__34C8D9D1">
           <End Role="Cineplex" Type="Self.Cineplex" Multiplicity="1" />
@@ -394,7 +411,23 @@
             <End Role="SessionBooking" EntitySet="SessionBooking" />
             <End Role="Seating" EntitySet="Seating" />
           </AssociationSet>
+          <AssociationSet Name="fk_SessionID" Association="CineplexModel.fk_SessionID">
+            <End Role="MovieSession" EntitySet="MovieSession" />
+            <End Role="SessionBooking" EntitySet="SessionBooking" />
+          </AssociationSet>
         </EntityContainer>
+        <Association Name="fk_SessionID">
+          <End Type="CineplexModel.MovieSession" Role="MovieSession" Multiplicity="1" />
+          <End Type="CineplexModel.SessionBooking" Role="SessionBooking" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="MovieSession">
+              <PropertyRef Name="SessionID" />
+            </Principal>
+            <Dependent Role="SessionBooking">
+              <PropertyRef Name="SessionID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
