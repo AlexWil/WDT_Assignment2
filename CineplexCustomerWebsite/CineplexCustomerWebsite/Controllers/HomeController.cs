@@ -30,9 +30,9 @@ namespace CineplexCustomerWebsite.Controllers
             return View(db.Cineplex.ToList());
         }
 
-        public ActionResult Contact()
+        public ActionResult Events()
         {
-            ViewBag.Message = "Your contact page.";
+            ViewBag.Message = "ABC Corp. Events.";
 
             return View();
         }

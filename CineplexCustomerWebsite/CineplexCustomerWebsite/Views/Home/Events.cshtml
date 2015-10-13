@@ -1,0 +1,26 @@
+﻿
+@{
+    ViewBag.Title = "Events";
+}
+
+<h2>Events</h2>
+
+<hr />
+
+<p>Here at ABC Corp. we value what you, our customer, has to say. Feel free to send us an enquiry regarding any of our listed events.</p>
+
+@using (Html.BeginForm())
+{
+    <div class="form-group">
+        <label for="email">Email Address</label>
+        <input type="email" class="form-control" id="email" placeholder="emaple01@email.com" />
+    </div>
+    <div class="form-group">
+        <label for="enquiry">Enquiry</label>
+        <textarea class="form-control" rows="3"></textarea>
+    </div>
+
+    <button type="submit" class="btn btn-default">Submit</button>
+
+}
+    
