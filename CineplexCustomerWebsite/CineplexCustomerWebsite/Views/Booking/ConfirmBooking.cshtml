@@ -1,0 +1,20 @@
+﻿@using CineplexCustomerWebsite.Models
+
+@{
+    ViewBag.Title = "ConfirmBooking";
+}
+
+<h2>ConfirmBooking</h2>
+
+Do you want to confirm the booking of the following seats?
+<div class="jumbotron">
+    @ViewBag.ChosenSeats
+</div>
+
+@using (Html.BeginForm("Confirmation", "Booking", FormMethod.Get))
+{
+    <p>
+        Enter your Email: @Html.TextBox("email","", new { type = "email"})
+        <input class="btn btn-default" type="submit" value="Submit" />
+    </p>
+}
