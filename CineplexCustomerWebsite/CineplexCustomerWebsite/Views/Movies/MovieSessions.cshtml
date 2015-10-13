@@ -68,7 +68,7 @@
                 <img class="map" src="@Html.DisplayFor(modelItem => item.CineplexMovie.Movie.ImageUrl)" />
             </td>
             <td>
-                @Html.ActionLink("BOOK NOW", "MovieBooking", new { id = item.MovieID })
+                @Html.ActionLink("BOOK NOW", "MovieBooking", new { id = item.SessionID })
             </td>
 
         </tr>

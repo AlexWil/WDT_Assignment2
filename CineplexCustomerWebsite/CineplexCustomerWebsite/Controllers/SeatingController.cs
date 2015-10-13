@@ -22,23 +22,15 @@ namespace CineplexCustomerWebsite.Controllers
             var Bookings = from b in db.SessionBooking
                               select b;
 
-
-
             if (!String.IsNullOrEmpty(EmailSearch))
             {
                 Bookings = Bookings.Where(b => b.UserEmail == EmailSearch);
-
-
-                foreach (var seat in Bookings)
-                {
-
-                }
             }
             else
             {
                 Bookings = null;
             }
-
+            
             return View(Bookings);
         }
 

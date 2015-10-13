@@ -30,11 +30,27 @@ namespace CineplexCustomerWebsite.Controllers
             return View(db.Cineplex.ToList());
         }
 
-        public ActionResult Contact()
+        public ActionResult Events()
         {
-            ViewBag.Message = "Your contact page.";
-
-            return View();
+            //Session["Events"] = from e in db.Event
+              //                  select e;
+            return View(new Enquiry());
         }
+
+        [HttpPost]
+        public ActionResult Events(Enquiry UserEnquiry)
+        {
+            if (ModelState.IsValid)
+            {
+                db.Enquiry.Add(UserEnquiry);
+                db.SaveChanges();
+                return View("EnquirySubmission", UserEnquiry);
+            }
+            else
+            {
+                return View();
+            }
+        }
+
     }
 }

@@ -8,41 +8,71 @@
 
 <br />
 
-@using (Html.BeginForm("MovieSessions", "Movies", FormMethod.Post))
+@using (Html.BeginForm("ManageBookings", "Seating", FormMethod.Post))
 {
     <p>
-        Search By Email: @Html.TextBox("EmailSearch", "ManageBookings", new { type = "email", placeholder = "example01@email.com" })
+        Search By Email: @Html.TextBox("EmailSearch", null, new { type = "email",  placeholder = "example01@email.com" })
         <input class="btn-default" type="submit" value="Search" />
     </p>
 }
 
-<table class="table">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.MovieSession.SessionDateTime)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.MovieSession.CineplexMovie.Movie.Title)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.MovieSession.CineplexMovie.Cineplex.Location)
-        </th>
-        <th>
-            
-        </th>
-        
-
-        <th>
-
-        </th>
-        <th></th>
-    </tr>
-    @foreach (var item in Model)
-    {
+@if (Model != null)
+{
+    <table class="table">
         <tr>
-            
+            <th>
+                @Html.DisplayNameFor(model => model.MovieSession.SessionDateTime)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.MovieSession.CineplexMovie.Movie.Title)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.MovieSession.CineplexMovie.Cineplex.Location)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.MovieSession.Seating.First().Row)
+            </th>
 
+
+            <th>
+
+            </th>
+            <th></th>
         </tr>
-    }
-</table>
+        @foreach (var Booking in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => Booking.MovieSession.SessionDateTime)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => Booking.MovieSession.CineplexMovie.Movie.Title)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => Booking.MovieSession.CineplexMovie.Cineplex.Location)
+                </td>
+                <td>
+                    @foreach (CineplexCustomerWebsite.Models.Seating Seating in Booking.Seating)
+                    {
+                        @Html.DisplayFor(modelItem => Seating.Row + Seating.SeatNumber)
+                        <br />
+                    }
+                </td>
+                <td>
+                    @using (Html.BeginForm("CancelBooking", "Seating"))
+                    {
+                        <input type="submit" class="btn btn-danger" value="Cancel" />
+                    }
+                </td>
+            </tr>
+
+        }
+    </table>
+}
+else
+{
+    <h2>Please enter the email associated with the booking.</h2>
+}
+
+
 

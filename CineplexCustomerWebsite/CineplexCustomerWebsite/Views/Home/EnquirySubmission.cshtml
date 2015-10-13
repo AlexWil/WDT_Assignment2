@@ -1,0 +1,14 @@
+﻿@model CineplexCustomerWebsite.Models.Enquiry
+
+@{
+    ViewBag.Title = "EnquirySubmission";
+}
+
+<h2>Enquiry Submission</h2>
+
+<p>Thank you @Html.DisplayFor(e => e.Email)!</p>
+
+<br/>
+
+<p>Your enquiry: <em>@Html.DisplayFor(e => e.Message)</em> 
+has been recorded. We will do our best to get back to you as soon as possible.</p>
