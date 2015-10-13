@@ -1,0 +1,36 @@
+﻿@model IEnumerable<CineplexCustomerWebsite.Models.Cineplex>
+@{
+    ViewBag.Title = "Index";
+}
+<h2>Our Cineplexes</h2>
+
+
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Location)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ShortDescription)
+        </th>
+        <th>
+
+        </th>
+        <th></th>
+    </tr>
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.ActionLink((item.Location), "Details", new { id = item.CineplexID })
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ShortDescription)
+            </td>
+            <td>
+                <img class="map" src="@Html.DisplayFor(modelItem => item.ImageUrl)" />
+            </td>
+            
+        </tr>
+    }
+</table>

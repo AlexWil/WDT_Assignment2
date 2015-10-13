@@ -1,0 +1,85 @@
+﻿@model PagedList.IPagedList<CineplexCustomerWebsite.Models.MovieSession>
+@using PagedList.Mvc;
+<link href="~/Content/PagedList.css" rel="stylesheet" type="text/css" />
+
+@{
+    ViewBag.Title = "Movie Sessions";
+
+}
+
+<br />
+
+<h2>Movie Sessions</h2>
+
+<br />
+
+@using (Html.BeginForm("MovieSessions", "Movies", FormMethod.Get))
+{
+    <p>
+        Search By Cineplex: @Html.DropDownList("Cineplexes", "All")
+        Search By Title: @Html.TextBox("SearchString", ViewBag.CurrentFilter as string)
+        <input class="btn-default" type="submit" value="Search" />
+    </p>
+}
+
+<table class="table">
+    <tr>
+        <th>
+            @Html.ActionLink("Session Time", "MovieSessions", new { SortOrder = ViewBag.DateSortParm, CurrentFilter = ViewBag.CurrentFilter, CineplexFilter = ViewBag.CineplexFilter })
+        </th>
+        <th>
+            @Html.ActionLink("Movie", "MovieSessions", new { SortOrder = ViewBag.TitleSortParm, CurrentFilter = ViewBag.CurrentFilter, CineplexFilter = ViewBag.CineplexFilter })
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.First().CineplexMovie.Movie.Price)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.First().CineplexMovie.Cineplex.Location)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.First().CineplexMovie.Movie.ShortDescription)
+        </th>
+
+        <th>
+
+        </th>
+        <th></th>
+    </tr>
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.SessionDateTime)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.CineplexMovie.Movie.Title)
+            </td>
+
+            <td>
+               $ @Html.DisplayFor(modelItem => item.CineplexMovie.Movie.Price)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.CineplexMovie.Cineplex.Location)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.CineplexMovie.Movie.ShortDescription)
+            </td>
+            <td>
+                <img class="map" src="@Html.DisplayFor(modelItem => item.CineplexMovie.Movie.ImageUrl)" />
+            </td>
+            <td>
+                @Html.ActionLink("BOOK NOW", "MovieBooking", new { id = item.MovieID })
+            </td>
+
+        </tr>
+    }
+</table>
+
+<br />
+
+<div class="pagerDiv">
+    Page @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) of @Model.PageCount
+
+    @Html.PagedListPager(Model, page => Url.Action("MovieSessions", new { page, SortOrder = ViewBag.CurrentSort, CurrentFilter = ViewBag.CurrentFilter, CineplexFilter = ViewBag.CineplexFilter }))
+
+</div>

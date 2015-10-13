@@ -8,7 +8,7 @@
 
 <br />
 
-@using (Html.BeginForm("MovieSessions", "Movies", FormMethod.Get))
+@using (Html.BeginForm("MovieSessions", "Movies", FormMethod.Post))
 {
     <p>
         Search By Email: @Html.TextBox("EmailSearch", "ManageBookings", new { type = "email", placeholder = "example01@email.com" })
@@ -19,16 +19,16 @@
 <table class="table">
     <tr>
         <th>
-            @Html.DisplayNameFor(model => model.BookingID)
+            @Html.DisplayNameFor(model => model.MovieSession.SessionDateTime)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.UserEmail)
+            @Html.DisplayNameFor(model => model.MovieSession.CineplexMovie.Movie.Title)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.SessionID)
+            @Html.DisplayNameFor(model => model.MovieSession.CineplexMovie.Cineplex.Location)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Seating)
+            
         </th>
         
 
@@ -40,26 +40,7 @@
     @foreach (var item in Model)
     {
         <tr>
-            <td>
-
-            </td>
-            <td>
-
-            </td>
-
-            <td>
-
-            </td>
-            <td>
-
-            </td>
-            <td>
-
-            </td>
             
-            <td>
-                @Html.ActionLink("BOOK NOW", "MovieBooking", new {  })
-            </td>
 
         </tr>
     }

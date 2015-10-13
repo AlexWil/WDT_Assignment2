@@ -19,19 +19,27 @@ namespace CineplexCustomerWebsite.Controllers
         public ActionResult ManageBookings(string EmailSearch)
         {
 
-            var AllBookings = from b in db.SessionBooking
+            var Bookings = from b in db.SessionBooking
                               select b;
+
+
 
             if (!String.IsNullOrEmpty(EmailSearch))
             {
-                AllBookings = AllBookings.Where(b => b.UserEmail == EmailSearch);
+                Bookings = Bookings.Where(b => b.UserEmail == EmailSearch);
+
+
+                foreach (var seat in Bookings)
+                {
+
+                }
             }
             else
             {
-                AllBookings = null;
+                Bookings = null;
             }
 
-            return View(AllBookings);
+            return View(Bookings);
         }
 
         public ActionResult CancelBooking()

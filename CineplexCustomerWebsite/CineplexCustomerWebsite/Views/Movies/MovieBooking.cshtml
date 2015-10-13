@@ -1,0 +1,37 @@
+﻿@model CineplexCustomerWebsite.Models.MovieSession
+
+@{
+    ViewBag.Title = "MovieBooking";
+}
+
+<h2>Movie Booking</h2>
+
+<div class="row">
+    <div class="panel panel-default col-lg-6" style="float: left;">
+        <div class="panel-heading">
+            <h3 class="panel-title">@Html.DisplayFor(model => model.CineplexMovie.Movie.Title) : @Html.DisplayFor(model => model.SessionDateTime)</h3>
+        </div>
+
+        <div class="panel-body">
+            <ul style="list-style-type: none;">
+                <li>
+                    @Html.DisplayFor(model => model.CineplexMovie.Cineplex.Location)
+                </li>
+                <li>
+                    @Html.DisplayFor(model => model.CineplexMovie.Movie.Price)
+                </li>
+                <li>
+                    @Html.DisplayFor(model => model.CineplexMovie.Movie.LongDescription)
+                </li>
+                <li>
+                    @Html.ActionLink("Book Seats", "Booking", "Seating")
+                </li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="col-lg-6">
+        <img class="map" src="@Html.DisplayFor(model => model.CineplexMovie.Movie.ImageUrl)" />
+    </div>
+
+</div>
