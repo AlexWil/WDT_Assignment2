@@ -50,6 +50,7 @@ namespace CineplexCustomerWebsite.Controllers
 
         public ActionResult ConfirmBooking()
         {
+            GenerateData();
             Session["ChosenSeats"] = null;
             // session selected variable Session["SessionSelected"]
             return RedirectToAction("Index", "Home");
@@ -102,7 +103,7 @@ namespace CineplexCustomerWebsite.Controllers
                     seatToDeselect = seat;
                 }
             }
-            (Session["ChosenSeats"] as List<Seating>).Remove(seatToDeselect);          
+            ((List<Seating>) Session["ChosenSeats"]).Remove(seatToDeselect);          
             return RedirectToAction("Booking");
         }
 
@@ -115,5 +116,133 @@ namespace CineplexCustomerWebsite.Controllers
             base.Dispose(disposing);
         }
 
+        private void GenerateData()
+        {
+            Movie thisMovie = db.Movie.First(movie => movie.MovieID == 10);
+            Cineplex thisCineplex = db.Cineplex.First(cineplex => cineplex.CineplexID == 1);
+            DateTime startShowTime = DateTime.Parse("15.10.2015 20:00:00");
+            GenerateMovieSessionsForMovie(thisMovie, thisCineplex, startShowTime);
+
+             thisMovie = db.Movie.First(movie => movie.MovieID == 5);
+             thisCineplex = db.Cineplex.First(cineplex => cineplex.CineplexID == 1);
+             startShowTime = DateTime.Parse("15.10.2015 16:00:00");
+            GenerateMovieSessionsForMovie(thisMovie, thisCineplex, startShowTime);
+
+             thisMovie = db.Movie.First(movie => movie.MovieID == 4);
+             thisCineplex = db.Cineplex.First(cineplex => cineplex.CineplexID == 1);
+             startShowTime = DateTime.Parse("15.10.2015 12:00:00");
+            GenerateMovieSessionsForMovie(thisMovie, thisCineplex, startShowTime);
+
+//             thisMovie = db.Movie.First(movie => movie.MovieID == 3);
+//             thisCineplex = db.Cineplex.First(cineplex => cineplex.CineplexID == 2);
+//             startShowTime = DateTime.Parse("15.10.2015 20:00:00");
+//             GenerateMovieSessionsForMovie(thisMovie, thisCineplex, startShowTime);
+//
+//             thisMovie = db.Movie.First(movie => movie.MovieID == 2);
+//             thisCineplex = db.Cineplex.First(cineplex => cineplex.CineplexID == 2);
+//             startShowTime = DateTime.Parse("15.10.2015 16:00:00");
+//            GenerateMovieSessionsForMovie(thisMovie, thisCineplex, startShowTime);
+//
+//            thisMovie = db.Movie.First(movie => movie.MovieID == 1);
+//            thisCineplex = db.Cineplex.First(cineplex => cineplex.CineplexID == 2);
+//            startShowTime = DateTime.Parse("15.10.2015 12:00:00");
+//            GenerateMovieSessionsForMovie(thisMovie, thisCineplex, startShowTime);
+//
+//            thisMovie = db.Movie.First(movie => movie.MovieID == 4);
+//            thisCineplex = db.Cineplex.First(cineplex => cineplex.CineplexID == 3);
+//            startShowTime = DateTime.Parse("15.10.2015 20:00:00");
+//            GenerateMovieSessionsForMovie(thisMovie, thisCineplex, startShowTime);
+//
+//            thisMovie = db.Movie.First(movie => movie.MovieID == 5);
+//            thisCineplex = db.Cineplex.First(cineplex => cineplex.CineplexID == 3);
+//            startShowTime = DateTime.Parse("15.10.2015 16:00:00");
+//            GenerateMovieSessionsForMovie(thisMovie, thisCineplex, startShowTime);  
+//            
+//            thisMovie = db.Movie.First(movie => movie.MovieID == 2);
+//            thisCineplex = db.Cineplex.First(cineplex => cineplex.CineplexID == 3);
+//            startShowTime = DateTime.Parse("15.10.2015 12:00:00");
+//            GenerateMovieSessionsForMovie(thisMovie, thisCineplex, startShowTime);
+//
+//            thisMovie = db.Movie.First(movie => movie.MovieID == 3);
+//            thisCineplex = db.Cineplex.First(cineplex => cineplex.CineplexID == 4);
+//            startShowTime = DateTime.Parse("15.10.2015 20:00:00");
+//            GenerateMovieSessionsForMovie(thisMovie, thisCineplex, startShowTime);
+//
+//            thisMovie = db.Movie.First(movie => movie.MovieID == 8);
+//            thisCineplex = db.Cineplex.First(cineplex => cineplex.CineplexID == 4);
+//            startShowTime = DateTime.Parse("15.10.2015 16:00:00");
+//            GenerateMovieSessionsForMovie(thisMovie, thisCineplex, startShowTime);
+//
+//            thisMovie = db.Movie.First(movie => movie.MovieID == 10);
+//            thisCineplex = db.Cineplex.First(cineplex => cineplex.CineplexID == 4);
+//            startShowTime = DateTime.Parse("15.10.2015 12:00:00");
+//            GenerateMovieSessionsForMovie(thisMovie, thisCineplex, startShowTime);
+//            
+//            thisMovie = db.Movie.First(movie => movie.MovieID == 5);
+//            thisCineplex = db.Cineplex.First(cineplex => cineplex.CineplexID == 5);
+//            startShowTime = DateTime.Parse("15.10.2015 20:00:00");
+//            GenerateMovieSessionsForMovie(thisMovie, thisCineplex, startShowTime);
+//            
+//            thisMovie = db.Movie.First(movie => movie.MovieID == 3);
+//            thisCineplex = db.Cineplex.First(cineplex => cineplex.CineplexID == 5);
+//            startShowTime = DateTime.Parse("15.10.2015 16:00:00");
+//            GenerateMovieSessionsForMovie(thisMovie, thisCineplex, startShowTime);
+//            
+//            thisMovie = db.Movie.First(movie => movie.MovieID == 1);
+//            thisCineplex = db.Cineplex.First(cineplex => cineplex.CineplexID == 5);
+//            startShowTime = DateTime.Parse("15.10.2015 12:00:00");
+//            GenerateMovieSessionsForMovie(thisMovie, thisCineplex, startShowTime);
+        }
+
+        private void GenerateMovieSessionsForMovie(Movie movie, Cineplex cineplex, DateTime dailyShowTime)
+        {
+
+            DateTime endDate = DateTime.Parse("15.11.2015 23:00:00");
+
+
+            while (dailyShowTime.CompareTo(endDate) < 0)
+            {
+                MovieSession movieSession = new MovieSession
+                {
+                    CineplexID = cineplex.CineplexID,
+                    MovieID = movie.MovieID,
+                    SessionDateTime = DateTime.MinValue
+                };
+                dailyShowTime = dailyShowTime.AddDays(1);
+                GenerateSeatsForSession(movieSession);
+                db.MovieSession.Add(movieSession);
+            }
+            db.SaveChanges();
+        }
+
+
+        private void GenerateSeatsForSession(MovieSession session)
+        {
+            List<String> rows = new List<String>()
+            {
+                "A",
+                "B",
+                "C",
+                "D",
+                "E",
+                "F",
+                "G"
+            };
+            foreach (String row in rows)
+            {
+                for (int i = 0; i <= 10; i++)
+                {
+                    Seating seat = new Seating
+                    {
+                        IsTaken = false, 
+                        MovieSession = session, 
+                        Row = row, 
+                        SeatNumber = i,
+                        SessionID = session.SessionID,
+                     };
+                    db.Seating.Add(seat);
+                }
+            }
+        }
     }
 }

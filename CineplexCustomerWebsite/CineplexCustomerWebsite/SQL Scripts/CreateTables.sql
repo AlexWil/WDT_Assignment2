@@ -56,7 +56,7 @@ create table MovieSession
 	SessionID int not null identity,
 	CineplexID int not null,
 	MovieID int not null,
-	SessionDateTime date not null,
+	SessionDateTime [datetime] not null,
 	foreign key (CineplexID, MovieID) references CineplexMovie (CineplexID, MovieID),
 	primary key (SessionID)
 
