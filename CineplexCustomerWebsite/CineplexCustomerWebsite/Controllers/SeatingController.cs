@@ -48,7 +48,7 @@ namespace CineplexCustomerWebsite.Controllers
         }
 
         // GET: Seating/Create
-        public ActionResult Booking()
+        public ActionResult Booking(int movieSessionId = 1)
         {
             List<string> rows = db.Seating
                 .Where(seat => seat.SessionID == 1)
@@ -58,34 +58,36 @@ namespace CineplexCustomerWebsite.Controllers
 
             ViewBag.Rows = rows;
             String firstRow = rows[0];
-            ViewBag.SeatsInRow = db.Seating.Count(seat => seat.SessionID == 1 && seat.Row == firstRow);
+            ViewBag.SeatsInRow = db.Seating.Count(seat => seat.SessionID == movieSessionId && seat.Row == firstRow);
 
             //Maximum is needed to calculate optimal layout of table
             List<int> seatsPerRow = new List<int>();
-            rows.ForEach(row => seatsPerRow.Add(db.Seating.Count(seat => seat.SessionID == 1 && seat.Row == row)));
+            rows.ForEach(row => seatsPerRow.Add(db.Seating.Count(seat => seat.SessionID == movieSessionId && seat.Row == row)));
             ViewBag.maxSeatsPerRow=seatsPerRow.Max();
 
             if (Session["ChosenSeats"] == null)
             {
                 Session["ChosenSeats"] = new List<Seating>();
             }
+            Session["MovieSessionID"] = movieSessionId;
 
-            IEnumerable<int> chosenSeatIDs = (Session["ChosenSeats"] as List<Seating>).Select(chosenSeat => chosenSeat.SeatingID);
+            IEnumerable<int> chosenSeatIDs = ((List<Seating>) Session["ChosenSeats"]).Select(chosenSeat => chosenSeat.SeatingID);
             ViewBag.ChosenSeatIDs = chosenSeatIDs;
+            ViewBag.MovieSessionID = movieSessionId;
 
             return View(db.Seating.ToList());
         }
 
         public ActionResult SelectSeat(Seating seat)
         {
-            (Session["ChosenSeats"] as List<Seating>).Add(seat);
+            ((List<Seating>) Session["ChosenSeats"]).Add(seat);
 
             return RedirectToAction("Booking");
         }
 
         public ActionResult DeselectSeat(Seating seatToDeselect)
         {
-           foreach (Seating seat in (Session["ChosenSeats"] as List<Seating>))
+           foreach (Seating seat in ((List<Seating>) Session["ChosenSeats"]))
             {
                 if (seat.SeatingID == seatToDeselect.SeatingID)
                 {
