@@ -32,7 +32,9 @@
                             <li>@Html.ActionLink("Movies Coming Soon", "MovieComingSoon", "Movies")</li>
                         </ul>
                     </li>
+
                     <li>@Html.ActionLink("Events", "Events", "Home")</li>
+                    <li>@Html.ActionLink("Contact Us", "Contact", "Home")</li>
                 </ul>
             </div>
         </div>
@@ -41,7 +43,12 @@
         @RenderBody()
         <hr />
         <footer>
+            
+            @Html.ActionLink("Sitemap", "Sitemap", "Home", new { area = "" })
+            <br />
+            <br />
             <p>&copy; @DateTime.Now.Year - ABC Cineplex Corp.</p>
+
         </footer>
     </div>
 

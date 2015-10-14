@@ -116,3 +116,8 @@ E:\Projekte\RMIT\WDT_Assignment2\CineplexCustomerWebsite\CineplexCustomerWebsite
 E:\Projekte\RMIT\WDT_Assignment2\CineplexCustomerWebsite\CineplexCustomerWebsite\bin\Microsoft.Owin.xml
 E:\Projekte\RMIT\WDT_Assignment2\CineplexCustomerWebsite\CineplexCustomerWebsite\bin\Microsoft.Owin.Host.SystemWeb.xml
 E:\Projekte\RMIT\WDT_Assignment2\CineplexCustomerWebsite\CineplexCustomerWebsite\bin\Microsoft.Owin.Security.xml
+C:\Users\Mathew\Source\Repos\WDT_Assignment2\CineplexCustomerWebsite\CineplexCustomerWebsite\bin\MvcSiteMapProvider.dll
+C:\Users\Mathew\Source\Repos\WDT_Assignment2\CineplexCustomerWebsite\CineplexCustomerWebsite\bin\MvcSiteMapProvider.WebActivator.dll
+C:\Users\Mathew\Source\Repos\WDT_Assignment2\CineplexCustomerWebsite\CineplexCustomerWebsite\bin\WebActivatorEx.dll
+C:\Users\Mathew\Source\Repos\WDT_Assignment2\CineplexCustomerWebsite\CineplexCustomerWebsite\bin\MvcSiteMapProvider.xml
+C:\Users\Mathew\Source\Repos\WDT_Assignment2\CineplexCustomerWebsite\CineplexCustomerWebsite\bin\MvcSiteMapProvider.WebActivator.xml

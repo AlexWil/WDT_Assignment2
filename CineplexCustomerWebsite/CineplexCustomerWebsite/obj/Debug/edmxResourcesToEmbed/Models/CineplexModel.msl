@@ -89,6 +89,8 @@
     <EntitySetMapping Name="SessionBooking">
       <EntityTypeMapping TypeName="CineplexModel.SessionBooking">
         <MappingFragment StoreEntitySet="SessionBooking">
+          <ScalarProperty Name="SeatingID" ColumnName="SeatingID" />
+          <ScalarProperty Name="CineplexID" ColumnName="CineplexID" />
           <ScalarProperty Name="BookingID" ColumnName="BookingID" />
           <ScalarProperty Name="SessionID" ColumnName="SessionID" />
           <ScalarProperty Name="UserEmail" ColumnName="UserEmail" />
