@@ -1,4 +1,4 @@
-﻿@model CineplexCustomerWebsite.Models.Enquiry
+﻿@model IEnumerable<CineplexCustomerWebsite.Models.Event>
 
 @{
     ViewBag.Title = "Events";
@@ -6,24 +6,11 @@
 
 <h2>Events</h2>
 
-<hr />
+<div class="list-group">
 
-<p>Here at ABC Corp. we value what you, our customer, has to say. Feel free to send us an enquiry regarding any of our listed events.</p>
+    @foreach (var Event in Model)
+    {
+        <a href="@Url.Action("EventDetails", "Home", new { EventID = Event.EventID })" class="list-group-item">@Html.DisplayFor(e => Event.EventTitle)</a>
+    }
 
-@using (Html.BeginForm())
-{
-    @Html.ValidationSummary(true)
-        
-    <h3>Email:</h3>
-    @Html.EditorFor(e => e.Email)
-    <p style="color:red;">@Html.ValidationMessageFor(e => e.Email)</p>
-        
-    <h3>Enquiry:</h3>
-    @Html.TextArea("Message", new { rows = 10, cols = 40 })
-    <p style="color:red;">@Html.ValidationMessageFor(e => e.Message)</p>
-
-    <button type="submit" class="btn btn-default">Submit</button>
-
-}
-
-    
+</div>
