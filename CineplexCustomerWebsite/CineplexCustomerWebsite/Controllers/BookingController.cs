@@ -37,13 +37,15 @@ namespace CineplexCustomerWebsite.Controllers
                 Seating = seats,
                 MovieSession = db.MovieSession.First(session => session.SessionID == movieSession),
                 UserEmail = email,
-                SessionID = movieSession
+                SessionID = movieSession,
             };
+            booking.CineplexID = booking.MovieSession.CineplexID;
 
             foreach (Seating seat in seats)
             {
                 seat.IsTaken = true;
                 db.Entry(seat).State = EntityState.Modified;
+                seat.SessionBooking.Add(booking);
             }
             db.SessionBooking.Add(booking);
             db.SaveChanges();

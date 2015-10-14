@@ -132,6 +132,7 @@
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Controllers\BookingController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\MoviesController.cs" />
     <Compile Include="Controllers\SeatingController.cs" />
@@ -249,6 +250,8 @@
     <Content Include="Views\Seating\ManageBookings.cshtml" />
     <Content Include="Views\Home\Events.cshtml" />
     <Content Include="Views\Home\EnquirySubmission.cshtml" />
+    <Content Include="Views\Booking\BookingConfirmation.cshtml" />
+    <Content Include="Views\Booking\ConfirmBooking.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
