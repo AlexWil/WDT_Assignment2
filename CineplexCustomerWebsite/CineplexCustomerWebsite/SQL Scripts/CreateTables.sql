@@ -74,12 +74,10 @@ create table Seating(
 
 create table SessionBooking
 (
-	BookingID int not null,
+	BookingID int not null identity,
 	SessionID int not null foreign key references MovieSession (SessionID),
     UserEmail nvarchar(MAX),
 	CineplexID int not null,
-	SeatingID int not null,
-	foreign key (SeatingID) references Seating (SeatingID),
 	foreign key (CineplexID) references Cineplex (CineplexID),
 	primary key (BookingID)
 

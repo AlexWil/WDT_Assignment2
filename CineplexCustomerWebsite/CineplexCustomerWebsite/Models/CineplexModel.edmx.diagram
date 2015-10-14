@@ -12,17 +12,16 @@
         <EntityTypeShape EntityType="CineplexModel.Movie" Width="1.5" PointX="0.75" PointY="5" IsExpanded="true" />
         <EntityTypeShape EntityType="CineplexModel.MovieComingSoon" Width="1.5" PointX="0.75" PointY="8.75" IsExpanded="true" />
         <EntityTypeShape EntityType="CineplexModel.MovieSession" Width="1.5" PointX="5.25" PointY="1" IsExpanded="true" />
-        <EntityTypeShape EntityType="CineplexModel.Seating" Width="1.5" PointX="7.5" PointY="1" IsExpanded="true" />
-        <EntityTypeShape EntityType="CineplexModel.SessionBooking" Width="1.5" PointX="5.25" PointY="5.25" IsExpanded="true" />
         <AssociationConnector Association="CineplexModel.FK__CineplexM__Cinep__34C8D9D1" ManuallyRouted="false" />
         <AssociationConnector Association="CineplexModel.FK__CineplexM__Movie__35BCFE0A" ManuallyRouted="false" />
         <AssociationConnector Association="CineplexModel.FK__MovieSession__05D8E0BE" ManuallyRouted="false" />
-        <AssociationConnector Association="CineplexModel.FK__Seating__Session__08B54D69" ManuallyRouted="false" />
-        <AssociationConnector Association="CineplexModel.SessionBookingSeating" ManuallyRouted="false" />
-        <AssociationConnector Association="CineplexModel.fk_SessionID" />
-        <AssociationConnector Association="CineplexModel.FK__SessionBo__Cinep__18EBB532" />
         <AssociationConnector Association="CineplexModel.FK_Event_0" />
-        <AssociationConnector Association="CineplexModel.FK__SessionBo__Seati__17F790F9" />
+        <EntityTypeShape EntityType="CineplexModel.Seating" Width="1.5" PointX="8.875" PointY="1.625" />
+        <EntityTypeShape EntityType="CineplexModel.SessionBooking" Width="1.5" PointX="11.875" PointY="1.75" />
+        <AssociationConnector Association="CineplexModel.FK__SessionBo__Cinep__29221CFB" />
+        <AssociationConnector Association="CineplexModel.FK__Seating__Session__14270015" />
+        <AssociationConnector Association="CineplexModel.FK__SessionBo__Sessi__282DF8C2" />
+        <AssociationConnector Association="CineplexModel.SessionBookingSeating" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

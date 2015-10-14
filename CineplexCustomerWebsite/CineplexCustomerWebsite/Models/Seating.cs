@@ -17,7 +17,6 @@ namespace CineplexCustomerWebsite.Models
         public Seating()
         {
             this.SessionBooking = new HashSet<SessionBooking>();
-            this.SessionBooking1 = new HashSet<SessionBooking>();
         }
     
         public int SeatingID { get; set; }
@@ -28,6 +27,5 @@ namespace CineplexCustomerWebsite.Models
     
         public virtual MovieSession MovieSession { get; set; }
         public virtual ICollection<SessionBooking> SessionBooking { get; set; }
-        public virtual ICollection<SessionBooking> SessionBooking1 { get; set; }
     }
 }

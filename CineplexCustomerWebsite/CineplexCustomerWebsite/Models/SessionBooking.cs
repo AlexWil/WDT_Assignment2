@@ -23,11 +23,9 @@ namespace CineplexCustomerWebsite.Models
         public int SessionID { get; set; }
         public string UserEmail { get; set; }
         public int CineplexID { get; set; }
-        public int SeatingID { get; set; }
     
-        public virtual ICollection<Seating> Seating { get; set; }
-        public virtual MovieSession MovieSession { get; set; }
         public virtual Cineplex Cineplex { get; set; }
-        public virtual Seating Seating1 { get; set; }
+        public virtual MovieSession MovieSession { get; set; }
+        public virtual ICollection<Seating> Seating { get; set; }
     }
 }

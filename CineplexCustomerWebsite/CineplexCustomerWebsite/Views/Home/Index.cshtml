@@ -4,7 +4,7 @@
 
 <div class="jumbotron">
     @Html.ActionLink("Home", "Index", "Home")<br/>
-    @Html.ActionLink("Bookings", "Booking", "Seating", 1, null)
+    @Html.ActionLink("Bookings", "Booking", "Seating", new { movieSessionId = 2 }, null)
     @Html.ActionLink("Generate Data", "GenerateData", "Seating")
 </div>
 

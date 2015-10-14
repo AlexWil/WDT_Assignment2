@@ -17,8 +17,8 @@ namespace CineplexCustomerWebsite.Models
         public Cineplex()
         {
             this.CineplexMovie = new HashSet<CineplexMovie>();
-            this.SessionBooking = new HashSet<SessionBooking>();
             this.Event = new HashSet<Event>();
+            this.SessionBooking = new HashSet<SessionBooking>();
         }
     
         public int CineplexID { get; set; }
@@ -28,7 +28,7 @@ namespace CineplexCustomerWebsite.Models
         public string ImageUrl { get; set; }
     
         public virtual ICollection<CineplexMovie> CineplexMovie { get; set; }
-        public virtual ICollection<SessionBooking> SessionBooking { get; set; }
         public virtual ICollection<Event> Event { get; set; }
+        public virtual ICollection<SessionBooking> SessionBooking { get; set; }
     }
 }

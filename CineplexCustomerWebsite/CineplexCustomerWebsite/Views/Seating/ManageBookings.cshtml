@@ -30,7 +30,7 @@
                 @Html.DisplayNameFor(model => model.MovieSession.CineplexMovie.Cineplex.Location)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.MovieSession.Seating.First().Row)
+                Seats
             </th>
 
 
@@ -54,7 +54,8 @@
                 <td>
                     @foreach (CineplexCustomerWebsite.Models.Seating Seating in Booking.Seating)
                     {
-                        @Html.DisplayFor(modelItem => Seating.Row + Seating.SeatNumber)
+                        @Html.DisplayFor(modelItem => Seating.Row)
+                        @Html.DisplayFor(modelItem => Seating.SeatNumber)
                         <br />
                     }
                 </td>
