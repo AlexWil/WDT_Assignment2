@@ -1,4 +1,4 @@
-﻿@model IEnumerable<CineplexCustomerWebsite.Models.Event>
+﻿@model CineplexCustomerWebsite.Models.Enquiry
 
 @{
     ViewBag.Title = "Events";
@@ -9,8 +9,9 @@
 <hr />
 
 <p>Here at ABC Corp. we value what you, our customer, has to say. Feel free to send us an enquiry regarding any of our listed events.</p>
-
-@    @Html.ValidationSummary(true)
+@using (Html.BeginForm())
+{ 
+    @Html.ValidationSummary(true)
         
     <h3>Email:</h3>
     @Html.TextBoxFor(e => e.Email, new { @class = "form-control" })

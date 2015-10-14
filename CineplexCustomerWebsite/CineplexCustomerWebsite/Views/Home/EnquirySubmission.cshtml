@@ -4,11 +4,10 @@
     ViewBag.Title = "EnquirySubmission";
 }
 
-<h2>Enquiry Submission</h2>
+<h2>Enquiry Has Been Submitted!</h2>
 
-<p>Thank you @Html.DisplayFor(e => e.Email)!</p>
+<p>Thank you <em>@Model.Email</em>! Your enquiry <em>@Model.Message</em> has been documented and we look forward to 
+    contacting you.</p>
 
-<br/>
 
-<p>Your enquiry: <em>@Html.DisplayFor(e => e.Message)</em> 
-has been recorded. We will do our best to get back to you as soon as possible.</p>
+
