@@ -34,8 +34,12 @@ namespace CineplexCustomerWebsite.Controllers
             return View(Bookings);
         }
 
-        public ActionResult CancelBooking()
+        public ActionResult CancelBooking(int? BookingID)
         {
+            var Booking = from b in db.SessionBooking
+                          where b.BookingID == BookingID
+                          select b;
+            
             Session["ChosenSeats"] = null;
             return RedirectToAction("Index", "Home");
         }

@@ -8,11 +8,11 @@
 
 <br />
 
-@using (Html.BeginForm("ManageBookings", "Seating", FormMethod.Post))
+@using (Html.BeginForm("ManageBookings", "Seating", FormMethod.Post, new { @class = "form-inline" }))
 {
     <p>
-        Search By Email: @Html.TextBox("EmailSearch", null, new { type = "email",  placeholder = "example01@email.com" })
-        <input class="btn-default" type="submit" value="Search" />
+        Search By Email: @Html.TextBox("EmailSearch", null, new { @class = "form-control", type = "email",  placeholder = "example01@email.com" })
+        <input class="btn btn-primary" type="submit" value="Search" />
     </p>
 }
 
@@ -60,7 +60,7 @@
                     }
                 </td>
                 <td>
-                    @using (Html.BeginForm("CancelBooking", "Seating"))
+                    @using (Html.BeginForm("CancelBooking", "Seating", new { BookingID = Booking.BookingID } ))
                     {
                         <input type="submit" class="btn btn-danger" value="Cancel" />
                     }
