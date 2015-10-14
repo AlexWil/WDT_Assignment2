@@ -36,8 +36,26 @@ namespace CineplexCustomerWebsite.Controllers
 
         public ActionResult CancelBooking(int? BookingID)
         {
-            
-            
+            SessionBooking sessionBooking = db.SessionBooking.First(booking => booking.BookingID == BookingID);
+            List<Seating> seatsInBooking = db.Seating.Where(seat => seat.SessionBooking.First().Equals(sessionBooking)).ToList();
+
+            foreach (Seating seat in seatsInBooking)
+            {
+                seat.IsTaken = false;
+                seat.SessionBooking.Remove(sessionBooking);
+                db.Entry(seat).State = EntityState.Modified;
+                
+            }
+            db.SessionBooking.Remove(sessionBooking);
+            db.Entry(sessionBooking).State = EntityState.Modified;
+            db.SaveChanges();
+
+            return RedirectToAction("Index", "Home");
+        }
+
+
+        public ActionResult CancelBookingProcess()
+        {
             Session["ChosenSeats"] = null;
             return RedirectToAction("Index", "Home");
         }
@@ -66,37 +84,10 @@ namespace CineplexCustomerWebsite.Controllers
             rows.ForEach(row => seatsPerRow.Add(db.Seating.Count(seat => seat.SessionID == movieSessionId && seat.Row == row)));
             ViewBag.maxSeatsPerRow=seatsPerRow.Max();
 
-            if (Session["ChosenSeats"] == null)
-            {
-                Session["ChosenSeats"] = new List<Seating>();
-            }
             Session["MovieSessionID"] = movieSessionId;
-
-            IEnumerable<int> chosenSeatIDs = ((List<Seating>) Session["ChosenSeats"]).Select(chosenSeat => chosenSeat.SeatingID);
-            ViewBag.ChosenSeatIDs = chosenSeatIDs;
             ViewBag.MovieSessionID = movieSessionId;
 
             return View(db.Seating.ToList());
-        }
-
-        public ActionResult SelectSeat(Seating seat)
-        {
-            ((List<Seating>) Session["ChosenSeats"]).Add(seat);
-
-            return RedirectToAction("Booking", new { movieSessionId = (int)Session["MovieSessionID"]});
-        }
-
-        public ActionResult DeselectSeat(Seating seatToDeselect)
-        {
-           foreach (Seating seat in ((List<Seating>) Session["ChosenSeats"]))
-            {
-                if (seat.SeatingID == seatToDeselect.SeatingID)
-                {
-                    seatToDeselect = seat;
-                }
-            }
-            ((List<Seating>) Session["ChosenSeats"]).Remove(seatToDeselect);
-            return RedirectToAction("Booking", new { movieSessionId = (int)Session["MovieSessionID"] });
         }
 
         protected override void Dispose(bool disposing)

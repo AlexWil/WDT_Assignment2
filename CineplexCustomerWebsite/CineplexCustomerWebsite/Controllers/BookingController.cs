@@ -13,14 +13,12 @@ namespace CineplexCustomerWebsite.Controllers
     {
         private DefaultConnection db = new DefaultConnection();
 
-        public ActionResult ConfirmBooking()
+        public ActionResult ConfirmBooking(FormCollection form)
         {
-            List<Seating> seats = (List<Seating>)Session["ChosenSeats"];
-            String chosenSeatsAsString = "";
-            foreach (Seating seat in seats)
-            {
-                chosenSeatsAsString += seat.Row + seat.SeatNumber + ", ";
-            }
+            List<int> seatingIds = form["submitChosenSeats"].Split(',').Select(int.Parse).ToList();
+            List<Seating> seats = seatingIds.Select(seatID => db.Seating.First(seat => seat.SeatingID == seatID)).ToList();
+            String chosenSeatsAsString = seats.Aggregate("", (current, seat) => current + (seat.Row + seat.SeatNumber + ", "));
+            Session["ChosenSeats"] = seatingIds;
             chosenSeatsAsString = chosenSeatsAsString.Substring(0, chosenSeatsAsString.Length - 2);
             ViewBag.ChosenSeats = chosenSeatsAsString;
             return View();
@@ -28,10 +26,9 @@ namespace CineplexCustomerWebsite.Controllers
 
         public ActionResult Confirmation(String email)
         {
-            List<Seating> seats = (List<Seating>)Session["ChosenSeats"];
-
+            List<int> seatingIds = (List<int>)Session["ChosenSeats"];
+            List<Seating> seats = seatingIds.Select(seatID => db.Seating.First(seat => seat.SeatingID == seatID)).ToList();
             int movieSession = (int)Session["MovieSessionID"];
-
             SessionBooking booking = new SessionBooking
             {
                 Seating = seats,
