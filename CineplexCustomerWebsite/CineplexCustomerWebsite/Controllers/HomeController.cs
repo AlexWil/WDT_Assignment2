@@ -15,7 +15,7 @@ namespace CineplexCustomerWebsite.Controllers
 
         public ActionResult Index()
         {
-            return View();
+            return View(db.Movie.ToList());
         }
 
         public ActionResult Events()

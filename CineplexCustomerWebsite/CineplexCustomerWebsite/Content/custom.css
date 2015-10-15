@@ -28,3 +28,10 @@ background-image:url(/Content/Icons/seatAvailable.png);
 .vertical ul {
     padding:0;
 }
+#carousel {
+    width:214px;
+    margin:0 auto;
+}
+#homepage {
+    text-align:center;
+}
