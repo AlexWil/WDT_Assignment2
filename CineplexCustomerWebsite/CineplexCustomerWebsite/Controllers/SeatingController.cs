@@ -36,26 +36,42 @@ namespace CineplexCustomerWebsite.Controllers
 
         public ActionResult CancelBooking(int? BookingID)
         {
-            SessionBooking sessionBooking = db.SessionBooking.First(booking => booking.BookingID == BookingID);
-            List<Seating> seatsInBooking = db.Seating.Where(seat => seat.SessionBooking.First().Equals(sessionBooking)).ToList();
+            SessionBooking SessionBooking = db.SessionBooking.First(booking => booking.BookingID == BookingID);
+            List<Seating> seatsInBooking = db.Seating.Where(s => s.SessionBooking.FirstOrDefault().BookingID.Equals(SessionBooking.BookingID)).ToList();
 
             foreach (Seating seat in seatsInBooking)
             {
                 seat.IsTaken = false;
-                seat.SessionBooking.Remove(sessionBooking);
+                seat.SessionBooking.Remove(SessionBooking);
                 db.Entry(seat).State = EntityState.Modified;
                 
             }
-            db.SessionBooking.Remove(sessionBooking);
-            db.Entry(sessionBooking).State = EntityState.Modified;
+
+            db.SessionBooking.Remove(SessionBooking);
+            //db.Entry(SessionBooking).State = EntityState.Modified;
             db.SaveChanges();
 
             return RedirectToAction("Index", "Home");
         }
 
 
-        public ActionResult CancelBookingProcess()
+        public ActionResult CancelBookingProcess(int? BookingID)
         {
+            SessionBooking Booking = db.SessionBooking.Find(BookingID);
+
+            List<Seating> SeatsInBooking = db.Seating.Where(seat => seat.SessionBooking.First().Equals(Booking)).ToList();
+
+            foreach (Seating seat in SeatsInBooking)
+            {
+                seat.IsTaken = false;
+                seat.SessionBooking.Remove(Booking);
+                db.Entry(seat).State = EntityState.Modified;
+            }
+
+            db.SessionBooking.Remove(Booking);
+            db.Entry(Booking).State = EntityState.Modified;
+            db.SaveChanges();
+
             Session["ChosenSeats"] = null;
             return RedirectToAction("Index", "Home");
         }
