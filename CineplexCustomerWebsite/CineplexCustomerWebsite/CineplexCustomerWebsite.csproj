@@ -319,6 +319,7 @@
     <Content Include="Views\Home\EnquirySubmission.cshtml" />
     <Content Include="Views\Booking\BookingConfirmation.cshtml" />
     <Content Include="Views\Booking\ConfirmBooking.cshtml" />
+    <Content Include="Views\Home\Cineplex.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

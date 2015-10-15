@@ -43,6 +43,17 @@ namespace CineplexCustomerWebsite.Controllers
             return View(db.Cineplex.ToList());
         }
 
+        public ActionResult Cineplex(int? id)
+        {
+            Cineplex SelectedCineplex = db.Cineplex.Find(id);
+
+            List<Event> Events = db.Event.Where(x => x.CineplexID == id).ToList();
+
+            ViewBag.Events = Events;
+
+            return View(SelectedCineplex);
+        }
+
         public ActionResult Contact()
         {
             return View(new Enquiry());
