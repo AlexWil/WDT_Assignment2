@@ -66,7 +66,7 @@
     <Property Name="SessionID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="CineplexID" Type="int" Nullable="false" />
     <Property Name="MovieID" Type="int" Nullable="false" />
-    <Property Name="SessionDateTime" Type="date" Nullable="false" />
+    <Property Name="SessionDateTime" Type="datetime" Nullable="false" />
   </EntityType>
   <EntityType Name="Seating">
     <Key>
@@ -84,7 +84,8 @@
     </Key>
     <Property Name="BookingID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="SessionID" Type="int" Nullable="false" />
-    <Property Name="UserEmail" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="UserEmail" Type="nvarchar(max)" />
+    <Property Name="CineplexID" Type="int" Nullable="false" />
   </EntityType>
   <EntityType Name="SessionBookingSeating">
     <Key>
@@ -118,7 +119,7 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK__MovieSession__05D8E0BE">
+  <Association Name="FK__MovieSession__114A936A">
     <End Role="CineplexMovie" Type="Self.CineplexMovie" Multiplicity="1" />
     <End Role="MovieSession" Type="Self.MovieSession" Multiplicity="*" />
     <ReferentialConstraint>
@@ -132,7 +133,7 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK__Seating__Session__08B54D69">
+  <Association Name="FK__Seating__Session__14270015">
     <End Role="MovieSession" Type="Self.MovieSession" Multiplicity="1" />
     <End Role="Seating" Type="Self.Seating" Multiplicity="*" />
     <ReferentialConstraint>
@@ -144,7 +145,7 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK__SessionBo__Booki__0B91BA14">
+  <Association Name="FK__SessionBo__Booki__2BFE89A6">
     <End Role="SessionBooking" Type="Self.SessionBooking" Multiplicity="1" />
     <End Role="SessionBookingSeating" Type="Self.SessionBookingSeating" Multiplicity="*" />
     <ReferentialConstraint>
@@ -156,7 +157,19 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK__SessionBo__Seati__0C85DE4D">
+  <Association Name="FK__SessionBo__Cinep__29221CFB">
+    <End Role="Cineplex" Type="Self.Cineplex" Multiplicity="1" />
+    <End Role="SessionBooking" Type="Self.SessionBooking" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Cineplex">
+        <PropertyRef Name="CineplexID" />
+      </Principal>
+      <Dependent Role="SessionBooking">
+        <PropertyRef Name="CineplexID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__SessionBo__Seati__2CF2ADDF">
     <End Role="Seating" Type="Self.Seating" Multiplicity="1" />
     <End Role="SessionBookingSeating" Type="Self.SessionBookingSeating" Multiplicity="*" />
     <ReferentialConstraint>
@@ -165,6 +178,18 @@
       </Principal>
       <Dependent Role="SessionBookingSeating">
         <PropertyRef Name="SeatingID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__SessionBo__Sessi__282DF8C2">
+    <End Role="MovieSession" Type="Self.MovieSession" Multiplicity="1" />
+    <End Role="SessionBooking" Type="Self.SessionBooking" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="MovieSession">
+        <PropertyRef Name="SessionID" />
+      </Principal>
+      <Dependent Role="SessionBooking">
+        <PropertyRef Name="SessionID" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
@@ -177,18 +202,6 @@
       </Principal>
       <Dependent Role="Event">
         <PropertyRef Name="CineplexID" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="fk_SessionID">
-    <End Role="MovieSession" Type="Self.MovieSession" Multiplicity="1" />
-    <End Role="SessionBooking" Type="Self.SessionBooking" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="MovieSession">
-        <PropertyRef Name="SessionID" />
-      </Principal>
-      <Dependent Role="SessionBooking">
-        <PropertyRef Name="SessionID" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
@@ -211,29 +224,33 @@
       <End Role="Movie" EntitySet="Movie" />
       <End Role="CineplexMovie" EntitySet="CineplexMovie" />
     </AssociationSet>
-    <AssociationSet Name="FK__MovieSession__05D8E0BE" Association="Self.FK__MovieSession__05D8E0BE">
+    <AssociationSet Name="FK__MovieSession__114A936A" Association="Self.FK__MovieSession__114A936A">
       <End Role="CineplexMovie" EntitySet="CineplexMovie" />
       <End Role="MovieSession" EntitySet="MovieSession" />
     </AssociationSet>
-    <AssociationSet Name="FK__Seating__Session__08B54D69" Association="Self.FK__Seating__Session__08B54D69">
+    <AssociationSet Name="FK__Seating__Session__14270015" Association="Self.FK__Seating__Session__14270015">
       <End Role="MovieSession" EntitySet="MovieSession" />
       <End Role="Seating" EntitySet="Seating" />
     </AssociationSet>
-    <AssociationSet Name="FK__SessionBo__Booki__0B91BA14" Association="Self.FK__SessionBo__Booki__0B91BA14">
+    <AssociationSet Name="FK__SessionBo__Booki__2BFE89A6" Association="Self.FK__SessionBo__Booki__2BFE89A6">
       <End Role="SessionBooking" EntitySet="SessionBooking" />
       <End Role="SessionBookingSeating" EntitySet="SessionBookingSeating" />
     </AssociationSet>
-    <AssociationSet Name="FK__SessionBo__Seati__0C85DE4D" Association="Self.FK__SessionBo__Seati__0C85DE4D">
+    <AssociationSet Name="FK__SessionBo__Cinep__29221CFB" Association="Self.FK__SessionBo__Cinep__29221CFB">
+      <End Role="Cineplex" EntitySet="Cineplex" />
+      <End Role="SessionBooking" EntitySet="SessionBooking" />
+    </AssociationSet>
+    <AssociationSet Name="FK__SessionBo__Seati__2CF2ADDF" Association="Self.FK__SessionBo__Seati__2CF2ADDF">
       <End Role="Seating" EntitySet="Seating" />
       <End Role="SessionBookingSeating" EntitySet="SessionBookingSeating" />
+    </AssociationSet>
+    <AssociationSet Name="FK__SessionBo__Sessi__282DF8C2" Association="Self.FK__SessionBo__Sessi__282DF8C2">
+      <End Role="MovieSession" EntitySet="MovieSession" />
+      <End Role="SessionBooking" EntitySet="SessionBooking" />
     </AssociationSet>
     <AssociationSet Name="FK_Event_0" Association="Self.FK_Event_0">
       <End Role="Cineplex" EntitySet="Cineplex" />
       <End Role="Event" EntitySet="Event" />
-    </AssociationSet>
-    <AssociationSet Name="fk_SessionID" Association="Self.fk_SessionID">
-      <End Role="MovieSession" EntitySet="MovieSession" />
-      <End Role="SessionBooking" EntitySet="SessionBooking" />
     </AssociationSet>
   </EntityContainer>
 </Schema>

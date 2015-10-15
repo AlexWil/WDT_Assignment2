@@ -78,29 +78,30 @@
     <EntitySetMapping Name="Seating">
       <EntityTypeMapping TypeName="CineplexModel.Seating">
         <MappingFragment StoreEntitySet="Seating">
-          <ScalarProperty Name="SeatingID" ColumnName="SeatingID" />
-          <ScalarProperty Name="Row" ColumnName="Row" />
-          <ScalarProperty Name="SeatNumber" ColumnName="SeatNumber" />
-          <ScalarProperty Name="SessionID" ColumnName="SessionID" />
           <ScalarProperty Name="IsTaken" ColumnName="IsTaken" />
+          <ScalarProperty Name="SessionID" ColumnName="SessionID" />
+          <ScalarProperty Name="SeatNumber" ColumnName="SeatNumber" />
+          <ScalarProperty Name="Row" ColumnName="Row" />
+          <ScalarProperty Name="SeatingID" ColumnName="SeatingID" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="SessionBooking">
       <EntityTypeMapping TypeName="CineplexModel.SessionBooking">
         <MappingFragment StoreEntitySet="SessionBooking">
-          <ScalarProperty Name="BookingID" ColumnName="BookingID" />
-          <ScalarProperty Name="SessionID" ColumnName="SessionID" />
+          <ScalarProperty Name="CineplexID" ColumnName="CineplexID" />
           <ScalarProperty Name="UserEmail" ColumnName="UserEmail" />
+          <ScalarProperty Name="SessionID" ColumnName="SessionID" />
+          <ScalarProperty Name="BookingID" ColumnName="BookingID" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
     <AssociationSetMapping Name="SessionBookingSeating" TypeName="CineplexModel.SessionBookingSeating" StoreEntitySet="SessionBookingSeating">
-      <EndProperty Name="SessionBooking">
-        <ScalarProperty Name="BookingID" ColumnName="BookingID" />
-      </EndProperty>
       <EndProperty Name="Seating">
         <ScalarProperty Name="SeatingID" ColumnName="SeatingID" />
+      </EndProperty>
+      <EndProperty Name="SessionBooking">
+        <ScalarProperty Name="BookingID" ColumnName="BookingID" />
       </EndProperty>
     </AssociationSetMapping>
   </EntityContainerMapping>
