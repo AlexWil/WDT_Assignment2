@@ -49,5 +49,43 @@ namespace CineplexCustomerWebsite.Controllers
 
             return View("BookingConfirmation");
         }
+
+        public ActionResult CancelBooking(int? BookingID)
+        {
+            SessionBooking sessionBooking = db.SessionBooking.First(booking => booking.BookingID == BookingID);
+            List<Seating> seatsInBooking = db.Seating.Where(s => s.SessionBooking.FirstOrDefault().BookingID.Equals(sessionBooking.BookingID)).ToList();
+
+            foreach (Seating seat in seatsInBooking)
+            {
+                seat.IsTaken = false;
+                seat.SessionBooking.Remove(sessionBooking);
+                db.Entry(seat).State = EntityState.Modified;
+
+            }
+
+            db.SessionBooking.Remove(sessionBooking);
+            //db.Entry(SessionBooking).State = EntityState.Modified;
+            db.SaveChanges();
+
+            return RedirectToAction("Index", "Home");
+        }
+
+        public ActionResult ManageBookings(string EmailSearch)
+        {
+
+            var Bookings = from b in db.SessionBooking
+                           select b;
+
+            if (!String.IsNullOrEmpty(EmailSearch))
+            {
+                Bookings = Bookings.Where(b => b.UserEmail == EmailSearch);
+            }
+            else
+            {
+                Bookings = null;
+            }
+
+            return View(Bookings);
+        }
     }
 }

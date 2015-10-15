@@ -15,75 +15,14 @@ namespace CineplexCustomerWebsite.Controllers
     {
         private DefaultConnection db = new DefaultConnection();
 
-        // displays bookings for a users email
-        public ActionResult ManageBookings(string EmailSearch)
+        public ActionResult CancelBookingProcess()
         {
-
-            var Bookings = from b in db.SessionBooking
-                              select b;
-
-            if (!String.IsNullOrEmpty(EmailSearch))
-            {
-                Bookings = Bookings.Where(b => b.UserEmail == EmailSearch);
-            }
-            else
-            {
-                Bookings = null;
-            }
-            
-            return View(Bookings);
-        }
-
-        public ActionResult CancelBooking(int? BookingID)
-        {
-            SessionBooking SessionBooking = db.SessionBooking.First(booking => booking.BookingID == BookingID);
-            List<Seating> seatsInBooking = db.Seating.Where(s => s.SessionBooking.FirstOrDefault().BookingID.Equals(SessionBooking.BookingID)).ToList();
-
-            foreach (Seating seat in seatsInBooking)
-            {
-                seat.IsTaken = false;
-                seat.SessionBooking.Remove(SessionBooking);
-                db.Entry(seat).State = EntityState.Modified;
-                
-            }
-
-            db.SessionBooking.Remove(SessionBooking);
-            //db.Entry(SessionBooking).State = EntityState.Modified;
-            db.SaveChanges();
-
-            return RedirectToAction("Index", "Home");
-        }
-
-
-        public ActionResult CancelBookingProcess(int? BookingID)
-        {
-            SessionBooking Booking = db.SessionBooking.Find(BookingID);
-
-            List<Seating> SeatsInBooking = db.Seating.Where(seat => seat.SessionBooking.First().Equals(Booking)).ToList();
-
-            foreach (Seating seat in SeatsInBooking)
-            {
-                seat.IsTaken = false;
-                seat.SessionBooking.Remove(Booking);
-                db.Entry(seat).State = EntityState.Modified;
-            }
-
-            db.SessionBooking.Remove(Booking);
-            db.Entry(Booking).State = EntityState.Modified;
-            db.SaveChanges();
-
             Session["ChosenSeats"] = null;
             return RedirectToAction("Index", "Home");
         }
 
-        public ActionResult GenerateData()
-        {
-            GenerateDataHelper();
-            return RedirectToAction("Index", "Home");
-        }
 
-        // GET: Seating/Create
-        public ActionResult Booking(int movieSessionId)
+        public ActionResult GraphicalSeatBooking(int movieSessionId)
         {
             List<string> rows = db.Seating
                 .Where(seat => seat.SessionID == movieSessionId)
@@ -113,6 +52,14 @@ namespace CineplexCustomerWebsite.Controllers
                 db.Dispose();
             }
             base.Dispose(disposing);
+        }
+
+
+        //Can be deleted later on..
+        public ActionResult GenerateData()
+        {
+            GenerateDataHelper();
+            return RedirectToAction("Index", "Home");
         }
 
         private void GenerateDataHelper()

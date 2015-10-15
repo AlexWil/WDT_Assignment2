@@ -24,14 +24,14 @@
                     @Html.DisplayFor(model => model.CineplexMovie.Movie.LongDescription)
                 </li>
                 <li>
-                    @Html.ActionLink("Book Seats", "Booking", "Seating", new { movieSessionId = Model.SessionID }, null)
+                    @Html.ActionLink("Book Seats", "GraphicalSeatBooking", "Seating", new { movieSessionId = Model.SessionID }, null)
                 </li>
             </ul>
         </div>
     </div>
 
     <div class="col-lg-6">
-        <img class="map" src="@Html.DisplayFor(model => model.CineplexMovie.Movie.ImageUrl)" />
+        <img class="map" src="../../@Model.CineplexMovie.Movie.ImageUrl" />
     </div>
 
 </div>

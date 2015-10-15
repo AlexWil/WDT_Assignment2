@@ -1,7 +1,7 @@
 ﻿@model IEnumerable<CineplexCustomerWebsite.Models.Seating>
 
 @{
-    ViewBag.Title = "Booking";
+    ViewBag.Title = "Graphical Seat Booking";
 }
 
 
@@ -14,34 +14,44 @@
     <script>
         var chosenSeats = [];
         var hub;
+        var submitted = false;
 
         $(document).ready(function() {
             hub = $.connection.seatAvailabilityHub;
             $.connection.hub.start();
             hub.client.setSeatAvailability = function(seatId, available) {
-                //set Seat with ID seatID to status available
-                alert(seatId + " status is " + available);
                 if (available) {
                     $("#"+seatId).attr("src", "/Content/Icons/seatAvailable.png");
+                    $("#"+seatId).prop('disabled', false);
                 } else {
                     $("#"+seatId).attr("src", "/Content/Icons/seatTaken.png");
+                    $("#"+seatId).prop('disabled', true);
                 }
             }
-         });
+            hub.client.queryChosenSeats = function() {
+                $.each(chosenSeats, function( index, value ) {
+                    hub.server.signalAvailability(value, false);
+                });
+            }
+        });
+
+        $(window).bind("beforeunload", function() {
+            if (!submitted) {
+                $.each(chosenSeats, function( index, value ) {
+                    hub.server.signalAvailability(value, true);
+                });
+            }        
+        });
+
+        $(document).submit(function(){
+            submitted = true;
+        });
     </script>
 }
-<div class="container">
-    <input type="text" id="message" />
-    <input type="button" id="sendmessage" value="Send" />
-    <input type="hidden" id="displayname" />
-    <ul id="discussion"></ul>
-</div>
-
 <h2>Booking</h2>
 
 <div class="jumbotron">
     <table style="margin-left: auto; margin-right: auto">
-
 
         <img src="~/Content/Icons/Screen.png" width="400" height="10" style="display: block; margin-left: auto; margin-right: auto" />
         <br />
@@ -64,7 +74,7 @@
                     <td>
                         @if (seat.IsTaken)
                         {
-                            <input id="@seat.SeatingID" type="image" src="~/Content/Icons/seatTaken.png">
+                            <input id="@seat.SeatingID" type="image" src="~/Content/Icons/seatTaken.png" disabled>
                         }
                         else
                         {
@@ -104,9 +114,9 @@
         }
     </div>
     <div class="col-sm-2">
-        @using (Html.BeginForm("CancelBooking", "Seating"))
+        @using (Html.BeginForm("CancelBookingProcess", "Seating"))
         {
-            <input type="submit" class="btn btn-danger" value="Cancel" />
+            <input type="button" class="btn btn-danger" value="Cancel" />
         }
     </div>
     <div class="col-sm-8"></div>
