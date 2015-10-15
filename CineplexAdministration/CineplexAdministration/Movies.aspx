@@ -59,7 +59,7 @@
         </Columns>
     </asp:GridView>
 
-    <asp:SqlDataSource ID="SqlDataSource1" runat="server" ConnectionString="<%$ ConnectionStrings:ElitebookConnectionString %>" DeleteCommand="DeleteMovie" DeleteCommandType="StoredProcedure" InsertCommand="InsertMovie" InsertCommandType="StoredProcedure" SelectCommand="ReadMovies" SelectCommandType="StoredProcedure" UpdateCommand="UpdateMovie" UpdateCommandType="StoredProcedure">
+    <asp:SqlDataSource ID="SqlDataSource1" runat="server" ConnectionString="<%$ ConnectionStrings:AzureConnectionString %>" DeleteCommand="DeleteMovie" DeleteCommandType="StoredProcedure" InsertCommand="InsertMovie" InsertCommandType="StoredProcedure" SelectCommand="ReadMovies" SelectCommandType="StoredProcedure" UpdateCommand="UpdateMovie" UpdateCommandType="StoredProcedure">
         <DeleteParameters>
             <asp:Parameter Name="MovieID" Type="Int32" />
         </DeleteParameters>
