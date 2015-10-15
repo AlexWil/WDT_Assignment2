@@ -4,7 +4,9 @@
 .imgButton{
 background-image:url(/Content/Icons/seatAvailable.png);
 }​
-
+ .map {
+     width:200px;
+ }
 .fixedTable {
     width: auto !important;
     margin-left: auto;
