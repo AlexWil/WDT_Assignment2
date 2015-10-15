@@ -4,6 +4,47 @@
     ViewBag.Title = "ConfirmBooking";
 }
 
+      <script type="text/javascript" src="~/Scripts/jquery.payment.min.js"></script>
+      <script> 
+          $(document).ready(function () {
+              var number;
+              var exp;
+              var cvv;
+              $("#card_number").payment('formatCardNumber');
+              $("#expiry_date").payment('formatCardExpiry');
+              $("#cvv").payment('formatCardCVC');
+              $('#card_number').blur(function(){
+                  number = $.payment.validateCardNumber($('#card_number').val());
+                  if (!number) {
+                      $('#ccerror').css("display", "inherit");
+                  } else {
+                      $('#ccerror').css("display", "none");
+                  }
+              });
+              $('#expiry_date').blur(function () {
+                  exp = $.payment.validateCardExpiry($.payment.cardExpiryVal($('#expiry_date').val()));
+                  if (!exp) {
+                      $('#experror').css("display", "inherit");
+                  } else {
+                      $('#experror').css("display", "none");
+                  }
+              });
+              $('#cvv').blur(function () {
+                  cvv = $.payment.validateCardCVC($('#cvv').val());
+                  if (!cvv) {
+                      $('#cvverror').css("display", "inherit");
+                  } else {
+                      $('#cvverror').css("display", "none");
+                  }
+              });
+              if (number == true && exp == true && cvv == true) {
+
+              }
+                
+        });
+    </script>
+    
+
 <h2>ConfirmBooking</h2>
 
 Do you want to confirm the booking of the following seats?
@@ -11,10 +52,40 @@ Do you want to confirm the booking of the following seats?
     @ViewBag.ChosenSeats
 </div>
 
+
+
 @using (Html.BeginForm("Confirmation", "Booking", FormMethod.Get))
 {
+    
+        <h4>Payment details</h4>
+
+        <ul class="ccform">
+            <li>
+                <label for="card_number">Card number</label>
+                <input type="text" name="card_number" id="card_number" placeholder="1234 5678 9012 3456" required style="cursor: auto;">
+                <small id="ccerror">Invalid Credit Card Number</small>
+            </li>
+                <li>
+                    <label for="expiry_date">Expiry date</label>
+                    <input type="text" name="expiry_date" id="expiry_date" required placeholder="mm/yy">
+                    <small id="experror">Invalid Date</small>
+                </li>
+
+                <li>
+                    <label for="cvv">CVC</label>
+                    <input type="text" name="cvv" id="cvv" required placeholder="123">
+                    <small id="cvverror">Invalid CVV</small>
+                </li>
+            <li>
+                <label for="name_on_card">Name on card</label>
+                <input type="text" name="name_on_card" id="name_on_card" required placeholder="A Sample">
+            </li>
+        </ul>
+
     <p>
         Enter your Email: @Html.TextBox("email","", new { type = "email"})
         <input class="btn btn-default" type="submit" value="Submit" />
     </p>
 }
+
+

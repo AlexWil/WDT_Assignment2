@@ -4,10 +4,27 @@
 .imgButton{
 background-image:url(/Content/Icons/seatAvailable.png);
 }​
-
+ .map {
+     width:200px;
+ }
 .fixedTable {
     width: auto !important;
     margin-left: auto;
     margin-right: auto;
 }
-
+#ccerror, #cvverror, #experror {
+    color:#ff0000;
+    display:none;
+}
+.ccform li {
+    list-style:none;
+}
+.vertical li {
+    display:inline;
+}
+.vertical input[type="text"] {
+    width: 80px;
+}
+.vertical ul {
+    padding:0;
+}
