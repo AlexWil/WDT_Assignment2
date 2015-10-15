@@ -59,33 +59,47 @@ Do you want to confirm the booking of the following seats?
     
         <h4>Payment details</h4>
 
-        <ul class="ccform">
-            <li>
-                <label for="card_number">Card number</label>
-                <input type="text" name="card_number" id="card_number" placeholder="1234 5678 9012 3456" required style="cursor: auto;">
-                <small id="ccerror">Invalid Credit Card Number</small>
-            </li>
-                <li>
-                    <label for="expiry_date">Expiry date</label>
-                    <input type="text" name="expiry_date" id="expiry_date" required placeholder="mm/yy">
-                    <small id="experror">Invalid Date</small>
-                </li>
-
-                <li>
-                    <label for="cvv">CVC</label>
-                    <input type="text" name="cvv" id="cvv" required placeholder="123">
+        <table class="ccform">
+            <tr>
+                <td><label for="card_number">Card number</label></td>
+                <td>@Html.TextBox("card_number", "", new Dictionary<string, object>() { { "required", "" }, { "placeholder", "1234 5678 9012 3456" } })</td>
+            </tr>
+            <tr>
+                <td><small id="ccerror">Invalid Credit Card Number</small></td>
+            </tr>
+                <tr>
+                    <td><label for="expiry_date">Expiry date</label></td>
+                    <td>@Html.TextBox("expiry_date", "", new Dictionary<string, object>() { { "required", "" }, { "placeholder", "mm/yy" } })</td>
+                </tr>
+                   <tr>
+                       <td>
+                           <small id="experror">Invalid Date</small>
+                       </td>
+                   </tr> 
+                <tr>
+                    <td><label for="cvv">CVC</label></td>
+                    <td>@Html.TextBox("cvv", "", new Dictionary<string, object>() { { "required", "" }, { "placeholder", "123" } })</td>
+                </tr>
+            <tr>
+                <td>
                     <small id="cvverror">Invalid CVV</small>
-                </li>
-            <li>
-                <label for="name_on_card">Name on card</label>
-                <input type="text" name="name_on_card" id="name_on_card" required placeholder="A Sample">
-            </li>
-        </ul>
-
-    <p>
-        Enter your Email: @Html.TextBox("email","", new { type = "email"})
-        <input class="btn btn-default" type="submit" value="Submit" />
-    </p>
+                </td>
+            </tr>
+            <tr>
+                <td><label for="name_on_card">Name on card</label></td>
+                <td>@Html.TextBox("name_on_card", "", new Dictionary<string, object>() { { "required", "" }, { "placeholder", "A Sample" } })</td>
+            </tr>
+            <tr>
+                <td><label for="email">Enter your Email: </label></td>
+                <td>@Html.TextBox("email", "", new { type = "email" })</td>
+            </tr>
+            <tr>
+                <td>
+                    <input class="btn btn-default" type="submit" value="Submit" />
+                </td>
+            </tr>
+        </table>
+    
 }
 
 

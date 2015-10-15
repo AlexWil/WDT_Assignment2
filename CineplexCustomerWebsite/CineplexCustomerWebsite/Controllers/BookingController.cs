@@ -24,7 +24,7 @@ namespace CineplexCustomerWebsite.Controllers
             return View();
         }
 
-        public ActionResult Confirmation(String email)
+        public ActionResult Confirmation(String card_number, String expiry_date, String cvv, String name_on_card, String email)
         {
             List<int> seatingIds = (List<int>)Session["ChosenSeats"];
             List<Seating> seats = seatingIds.Select(seatID => db.Seating.First(seat => seat.SeatingID == seatID)).ToList();
@@ -46,46 +46,13 @@ namespace CineplexCustomerWebsite.Controllers
             }
             db.SessionBooking.Add(booking);
             db.SaveChanges();
+            ViewBag.seats = seatingIds.Count;
+            ViewBag.card_number = card_number;
+            ViewBag.expiry_date = expiry_date;
+            ViewBag.cvv = cvv;
+            ViewBag.name_on_card = name_on_card;
 
             return View("BookingConfirmation");
-        }
-
-        public ActionResult CancelBooking(int? BookingID)
-        {
-            SessionBooking sessionBooking = db.SessionBooking.First(booking => booking.BookingID == BookingID);
-            List<Seating> seatsInBooking = db.Seating.Where(s => s.SessionBooking.FirstOrDefault().BookingID.Equals(sessionBooking.BookingID)).ToList();
-
-            foreach (Seating seat in seatsInBooking)
-            {
-                seat.IsTaken = false;
-                seat.SessionBooking.Remove(sessionBooking);
-                db.Entry(seat).State = EntityState.Modified;
-
-            }
-
-            db.SessionBooking.Remove(sessionBooking);
-            //db.Entry(SessionBooking).State = EntityState.Modified;
-            db.SaveChanges();
-
-            return RedirectToAction("Index", "Home");
-        }
-
-        public ActionResult ManageBookings(string EmailSearch)
-        {
-
-            var Bookings = from b in db.SessionBooking
-                           select b;
-
-            if (!String.IsNullOrEmpty(EmailSearch))
-            {
-                Bookings = Bookings.Where(b => b.UserEmail == EmailSearch);
-            }
-            else
-            {
-                Bookings = null;
-            }
-
-            return View(Bookings);
         }
     }
 }
