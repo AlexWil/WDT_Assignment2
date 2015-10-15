@@ -1,0 +1,16 @@
+﻿@model IEnumerable<CineplexCustomerWebsite.Models.Event>
+
+@{
+    ViewBag.Title = "Events";
+}
+
+<h2>Events</h2>
+
+<div class="list-group">
+
+    @foreach (var Event in Model)
+    {
+        <a href="@Url.Action("EventDetails", "Home", new { EventID = Event.EventID })" class="list-group-item">@Html.DisplayFor(e => Event.EventTitle)</a>
+    }
+
+</div>

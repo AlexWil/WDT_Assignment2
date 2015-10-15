@@ -8,9 +8,9 @@ namespace CineplexCustomerWebsite.Hubs
 {
     public class SeatAvailabilityHub : Hub
     {
-        public void Hello()
+        public void SignalAvailability(int seatId, Boolean available)
         {
-            Clients.All.hello();
+            Clients.Others.setSeatAvailability(seatId, available);
         }
     }
 }

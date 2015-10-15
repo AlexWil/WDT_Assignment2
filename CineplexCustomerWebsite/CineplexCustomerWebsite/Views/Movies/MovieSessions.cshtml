@@ -13,12 +13,12 @@
 
 <br />
 
-@using (Html.BeginForm("MovieSessions", "Movies", FormMethod.Get))
+@using (Html.BeginForm("MovieSessions", "Movies", FormMethod.Get, new { @class = "form-inline" } ))
 {
     <p>
-        Search By Cineplex: @Html.DropDownList("Cineplexes", "All")
-        Search By Title: @Html.TextBox("SearchString", ViewBag.CurrentFilter as string)
-        <input class="btn-default" type="submit" value="Search" />
+        Search By Cineplex: @Html.DropDownList("Cineplexes", null, "All", new { @class = "form-control"})
+        Search By Title: @Html.TextBox("SearchString", ViewBag.CurrentFilter as string, new { @class = "form-control"})
+        <input class="btn btn-primary" type="submit" value="Search" />
     </p>
 }
 
@@ -68,7 +68,7 @@
                 <img class="map" src="@Html.DisplayFor(modelItem => item.CineplexMovie.Movie.ImageUrl)" />
             </td>
             <td>
-                @Html.ActionLink("BOOK NOW", "MovieBooking", new { id = item.MovieID })
+                @Html.ActionLink("BOOK NOW", "MovieBooking", new { @class = "btn-success", id = item.SessionID })
             </td>
 
         </tr>

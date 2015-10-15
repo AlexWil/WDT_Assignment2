@@ -10,6 +10,7 @@
     <Property Name="LongDescription" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
     <Property Name="ImageUrl" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
     <NavigationProperty Name="CineplexMovie" Relationship="Self.FK__CineplexM__Cinep__34C8D9D1" FromRole="Cineplex" ToRole="CineplexMovie" />
+    <NavigationProperty Name="Event" Relationship="CineplexModel.FK_Event_0" FromRole="Cineplex" ToRole="Event" />
   </EntityType>
   <EntityType Name="CineplexMovie">
     <Key>
@@ -41,6 +42,7 @@
     <Property Name="EventTime" Type="Time" Nullable="false" Precision="7" />
     <Property Name="ShortDescription" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
     <Property Name="LongDescription" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+    <NavigationProperty Name="Cineplex" Relationship="CineplexModel.FK_Event_0" FromRole="Event" ToRole="Cineplex" />
   </EntityType>
   <EntityType Name="Movie">
     <Key>
@@ -186,6 +188,10 @@
       <End Role="MovieSession" EntitySet="MovieSession" />
       <End Role="SessionBooking" EntitySet="SessionBooking" />
     </AssociationSet>
+    <AssociationSet Name="FK_Event_0" Association="CineplexModel.FK_Event_0">
+      <End Role="Cineplex" EntitySet="Cineplex" />
+      <End Role="Event" EntitySet="Event" />
+    </AssociationSet>
   </EntityContainer>
   <Association Name="fk_SessionID">
     <End Type="CineplexModel.MovieSession" Role="MovieSession" Multiplicity="1" />
@@ -196,6 +202,18 @@
       </Principal>
       <Dependent Role="SessionBooking">
         <PropertyRef Name="SessionID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Event_0">
+    <End Type="CineplexModel.Cineplex" Role="Cineplex" Multiplicity="1" />
+    <End Type="CineplexModel.Event" Role="Event" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Cineplex">
+        <PropertyRef Name="CineplexID" />
+      </Principal>
+      <Dependent Role="Event">
+        <PropertyRef Name="CineplexID" />
       </Dependent>
     </ReferentialConstraint>
   </Association>

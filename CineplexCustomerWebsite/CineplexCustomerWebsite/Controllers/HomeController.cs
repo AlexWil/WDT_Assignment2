@@ -5,6 +5,7 @@ using System.Web;
 using System.Web.Mvc;
 using CineplexCustomerWebsite.Models;
 
+using System.Diagnostics;
 
 namespace CineplexCustomerWebsite.Controllers
 {
@@ -17,11 +18,23 @@ namespace CineplexCustomerWebsite.Controllers
             return View();
         }
 
-        public ActionResult About()
+        public ActionResult Events()
         {
-            ViewBag.Message = "Your application description page.";
+            return View(db.Event.ToList());
+        }
 
-            return View();
+        public ActionResult EventDetails(int? EventID)
+        {
+            Debug.WriteLine("Current event ID: " + EventID);
+
+            if (EventID == null)
+            {
+                return RedirectToAction("Events");
+            }
+
+            Event SelectedEvent = db.Event.Find(EventID);
+
+            return View(SelectedEvent);
         }
 
         public ActionResult Cineplexes()
@@ -32,9 +45,31 @@ namespace CineplexCustomerWebsite.Controllers
 
         public ActionResult Contact()
         {
-            ViewBag.Message = "Your contact page.";
+            return View(new Enquiry());
+        }
 
+        [HttpPost]
+        public ActionResult Contact(Enquiry UserEnquiry)
+        {
+
+            if (ModelState.IsValid)
+            {
+                db.Enquiry.Add(UserEnquiry);
+                db.SaveChanges();
+                return View("EnquirySubmission", UserEnquiry);
+            }
+            else
+            {
+                Debug.WriteLine("Current enquiry passed: " + UserEnquiry.Email + " : " + UserEnquiry.Message);
+
+                return View();
+            }
+        }
+
+        public ActionResult SiteMap()
+        {
             return View();
         }
+
     }
 }

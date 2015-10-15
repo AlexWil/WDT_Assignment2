@@ -1,17 +1,30 @@
-﻿@{
-    ViewBag.Title = "Contact";
+﻿@model CineplexCustomerWebsite.Models.Enquiry
+
+@{
+    ViewBag.Title = "Events";
 }
-<h2>@ViewBag.Title.</h2>
-<h3>@ViewBag.Message</h3>
 
-<address>
-    One Microsoft Way<br />
-    Redmond, WA 98052-6399<br />
-    <abbr title="Phone">P:</abbr>
-    425.555.0100
-</address>
+<h2>Events</h2>
 
-<address>
-    <strong>Support:</strong>   <a href="mailto:Support@example.com">Support@example.com</a><br />
-    <strong>Marketing:</strong> <a href="mailto:Marketing@example.com">Marketing@example.com</a>
-</address>
+<hr />
+
+<p>Here at ABC Corp. we value what you, our customer, has to say. Feel free to send us an enquiry regarding any of our listed events.</p>
+@using (Html.BeginForm())
+{ 
+    @Html.ValidationSummary(true)
+        
+    <h3>Email:</h3>
+    @Html.TextBoxFor(e => e.Email, new { @class = "form-control" })
+    <p style="color:red;">@Html.ValidationMessageFor(e => e.Email)</p>
+        
+    <h3>Enquiry:</h3>
+    @Html.TextArea("Message", new { @class = "form-control", rows = 10, cols = 40 })
+    <p style="color:red;">@Html.ValidationMessageFor(e => e.Message)</p>
+
+    <button type="submit" class="btn btn-primary">Submit</button>
+
+}
+
+<br/>
+<br/>
+
