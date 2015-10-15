@@ -15,59 +15,14 @@ namespace CineplexCustomerWebsite.Controllers
     {
         private DefaultConnection db = new DefaultConnection();
 
-        // displays bookings for a users email
-        public ActionResult ManageBookings(string EmailSearch)
-        {
-
-            var Bookings = from b in db.SessionBooking
-                              select b;
-
-            if (!String.IsNullOrEmpty(EmailSearch))
-            {
-                Bookings = Bookings.Where(b => b.UserEmail == EmailSearch);
-            }
-            else
-            {
-                Bookings = null;
-            }
-            
-            return View(Bookings);
-        }
-
-        public ActionResult CancelBooking(int? BookingID)
-        {
-            SessionBooking sessionBooking = db.SessionBooking.First(booking => booking.BookingID == BookingID);
-            List<Seating> seatsInBooking = db.Seating.Where(seat => seat.SessionBooking.First().Equals(sessionBooking)).ToList();
-
-            foreach (Seating seat in seatsInBooking)
-            {
-                seat.IsTaken = false;
-                seat.SessionBooking.Remove(sessionBooking);
-                db.Entry(seat).State = EntityState.Modified;
-                
-            }
-            db.SessionBooking.Remove(sessionBooking);
-            db.Entry(sessionBooking).State = EntityState.Modified;
-            db.SaveChanges();
-
-            return RedirectToAction("Index", "Home");
-        }
-
-
         public ActionResult CancelBookingProcess()
         {
             Session["ChosenSeats"] = null;
             return RedirectToAction("Index", "Home");
         }
 
-        public ActionResult GenerateData()
-        {
-            GenerateDataHelper();
-            return RedirectToAction("Index", "Home");
-        }
 
-        // GET: Seating/Create
-        public ActionResult Booking(int movieSessionId)
+        public ActionResult GraphicalSeatBooking(int movieSessionId)
         {
             List<string> rows = db.Seating
                 .Where(seat => seat.SessionID == movieSessionId)
@@ -97,6 +52,14 @@ namespace CineplexCustomerWebsite.Controllers
                 db.Dispose();
             }
             base.Dispose(disposing);
+        }
+
+
+        //Can be deleted later on..
+        public ActionResult GenerateData()
+        {
+            GenerateDataHelper();
+            return RedirectToAction("Index", "Home");
         }
 
         private void GenerateDataHelper()
