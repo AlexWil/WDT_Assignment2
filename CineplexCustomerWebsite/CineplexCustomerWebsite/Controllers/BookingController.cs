@@ -15,12 +15,22 @@ namespace CineplexCustomerWebsite.Controllers
 
         public ActionResult ConfirmBooking(FormCollection form)
         {
+            if (form == null)
+            {
+                RedirectToAction("Index", "Home");
+            }
             List<int> seatingIds = form["submitChosenSeats"].Split(',').Select(int.Parse).ToList();
             List<Seating> seats = seatingIds.Select(seatID => db.Seating.First(seat => seat.SeatingID == seatID)).ToList();
             String chosenSeatsAsString = seats.Aggregate("", (current, seat) => current + (seat.Row + seat.SeatNumber + ", "));
             Session["ChosenSeats"] = seatingIds;
             chosenSeatsAsString = chosenSeatsAsString.Substring(0, chosenSeatsAsString.Length - 2);
             ViewBag.ChosenSeats = chosenSeatsAsString;
+            int movieSessionId = (int) Session["MovieSessionID"];
+            MovieSession movieSession = db.MovieSession.First(session => session.SessionID == movieSessionId);
+            ViewBag.MovieTitle = db.Movie.First(movie => movie.MovieID == movieSession.MovieID).Title;
+            ViewBag.MovieDateTime = movieSession.SessionDateTime;
+            ViewBag.TotalPrice = db.Movie.First(movie => movie.MovieID == movieSession.MovieID).Price*seatingIds.Count;
+            ViewBag.ChosenSeatsCount = seatingIds.Count;
             return View();
         }
 
@@ -53,6 +63,45 @@ namespace CineplexCustomerWebsite.Controllers
             ViewBag.name_on_card = name_on_card;
 
             return View("BookingConfirmation");
+        }
+
+       
+        public ActionResult CancelBooking(int? BookingID)
+        {
+            SessionBooking sessionBooking = db.SessionBooking.First(booking => booking.BookingID == BookingID);
+            List<Seating> seatsInBooking = db.Seating.Where(s => s.SessionBooking.FirstOrDefault().BookingID.Equals(sessionBooking.BookingID)).ToList();
+
+            foreach (Seating seat in seatsInBooking)
+            {
+                seat.IsTaken = false;
+                seat.SessionBooking.Remove(sessionBooking);
+                db.Entry(seat).State = EntityState.Modified;
+
+            }
+
+            db.SessionBooking.Remove(sessionBooking);
+            //db.Entry(SessionBooking).State = EntityState.Modified;
+            db.SaveChanges();
+
+            return RedirectToAction("Index", "Home");
+        }
+
+        public ActionResult ManageBookings(string EmailSearch)
+        {
+
+            var Bookings = from b in db.SessionBooking
+                           select b;
+
+            if (!String.IsNullOrEmpty(EmailSearch))
+            {
+                Bookings = Bookings.Where(b => b.UserEmail == EmailSearch);
+            }
+            else
+            {
+                Bookings = null;
+            }
+
+            return View(Bookings);
         }
     }
 }

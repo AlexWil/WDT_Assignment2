@@ -45,11 +45,14 @@
     </script>
     
 
-<h2>ConfirmBooking</h2>
+<h2>Please confirm your booking:</h2>
 
-Do you want to confirm the booking of the following seats?
 <div class="jumbotron">
-    @ViewBag.ChosenSeats
+  Movie:  @ViewBag.MovieTitle<br/>
+  Date:  @ViewBag.MovieDateTime<br />
+  Seats:  @ViewBag.ChosenSeatsCount<br />
+  Price: @ViewBag.TotalPrice.ToString("C2")
+    
 </div>
 
 

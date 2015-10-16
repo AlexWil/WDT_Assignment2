@@ -15,6 +15,7 @@ namespace CineplexCustomerWebsite.Controllers
 
         public ActionResult Index()
         {
+//            Debug.Write(db.Movie.ToList().Count);
             return View(db.Movie.ToList());
         }
 

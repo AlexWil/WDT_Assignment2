@@ -5,39 +5,41 @@
 }
 
 <div class="jumbotron">
-    @Html.ActionLink("Home", "Index", "Home")<br/>
+
     @*    @Html.ActionLink("Generate Data", "GenerateData", "Seating")*@
-</div>
-<div class="row">
-    <div class="col-sm-12" id="homepage">
-        <h1>Welcome to ABC Cineplex Corp</h1>
-        <h3>Now Showing</h3>
-        <div id="carousel" class="carousel slide" data-ride="carousel" data-wrap="true">
-        @{   
-            int count = 0; 
-            <ol class="carousel-indicators">
-        @foreach (var item in Model)
-        {
-                <li class="slideto" data-target="#carousel" data-slide-to="@count"></li>
-            count++;
-        }
-            </ol>
-            <div class="carousel-inner"> 
-                @foreach (var item in Model) { 
-                <div class="item">
-                    <img src="../@Html.DisplayFor(modelItem => item.ImageUrl)" alt="@Html.DisplayFor(modelItem => item.Title)">
-                </div>
+
+    <div class="row">
+        <div class="col-sm-12" id="homepage">
+            <h2>Welcome to Alhoma cineplexes</h2>
+            <h3>Now Showing</h3>
+            <div id="carousel" class="carousel slide" data-ride="carousel" data-wrap="true">
+                @{
+                    int count = 0;
+                    <ol class="carousel-indicators">
+                        @foreach (var item in Model)
+                        {
+                            <li class="slideto" data-target="#carousel" data-slide-to="@count"></li>
+                            count++;
+                        }
+                    </ol>
+                    <div class="carousel-inner">
+                        @foreach (var item in Model)
+                        {
+                            <div class="item">
+                                <img src="../@Html.DisplayFor(modelItem => item.ImageUrl)" alt="@Html.DisplayFor(modelItem => item.Title)">
+                            </div>
+                        }
+                    </div>
                 }
+                <a class="left carousel-control" href="#carousel" role="button" data-slide="prev">
+                    <span class="glyphicon glyphicon-chevron-left"></span>
+                </a>
+                <a class="right carousel-control" href="#carousel" role="button" data-slide="next">
+                    <span class="glyphicon glyphicon-chevron-right"></span>
+                </a>
             </div>
-        }
-            <a class="left carousel-control" href="#carousel" role="button" data-slide="prev">
-                <span class="glyphicon glyphicon-chevron-left"></span>
-            </a>
-            <a class="right carousel-control" href="#carousel" role="button" data-slide="next">
-                <span class="glyphicon glyphicon-chevron-right"></span>
-            </a>
-        </div> 
         </div>
+    </div>
 </div>
 <script>
     $(".item:first").addClass("active");
