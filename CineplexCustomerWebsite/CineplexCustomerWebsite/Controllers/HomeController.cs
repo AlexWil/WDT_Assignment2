@@ -25,8 +25,6 @@ namespace CineplexCustomerWebsite.Controllers
 
         public ActionResult EventDetails(int? EventID)
         {
-            Debug.WriteLine("Current event ID: " + EventID);
-
             if (EventID == null)
             {
                 return RedirectToAction("Events");
@@ -46,11 +44,6 @@ namespace CineplexCustomerWebsite.Controllers
         public ActionResult Cineplex(int? id)
         {
             Cineplex SelectedCineplex = db.Cineplex.Find(id);
-
-            List<Event> Events = db.Event.Where(x => x.CineplexID == id).ToList();
-
-            ViewBag.Events = Events;
-
             return View(SelectedCineplex);
         }
 

@@ -17,15 +17,7 @@
                 <li>
                     @Html.DisplayFor(model => model.LongDescription)
                 </li>
-                <li>
-                    Events:
-                </li>
-                @forech (Event e in ViewBag.Events)
-                {
-                    <li>
-                        @Html.ActionLink(e.EventTitle, "Home", new { EventID = Event.EventID })
-                    </li>
-                }
+                
             </ul>
         </div>
     </div>
@@ -35,3 +27,5 @@
     </div>
 
 </div>
+
+@Html.ActionLink("Back", "Cineplexes")
