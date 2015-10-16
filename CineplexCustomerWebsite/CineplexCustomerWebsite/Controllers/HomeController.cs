@@ -15,7 +15,7 @@ namespace CineplexCustomerWebsite.Controllers
 
         public ActionResult Index()
         {
-            return View();
+            return View(db.Movie.ToList());
         }
 
         public ActionResult Events()
@@ -25,8 +25,6 @@ namespace CineplexCustomerWebsite.Controllers
 
         public ActionResult EventDetails(int? EventID)
         {
-            Debug.WriteLine("Current event ID: " + EventID);
-
             if (EventID == null)
             {
                 return RedirectToAction("Events");
@@ -41,6 +39,12 @@ namespace CineplexCustomerWebsite.Controllers
         {
             
             return View(db.Cineplex.ToList());
+        }
+
+        public ActionResult Cineplex(int? id)
+        {
+            Cineplex SelectedCineplex = db.Cineplex.Find(id);
+            return View(SelectedCineplex);
         }
 
         public ActionResult Contact()

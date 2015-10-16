@@ -276,6 +276,10 @@
       <LastGenOutput>CineplexModel.cs</LastGenOutput>
     </Content>
     <Content Include="ClassDiagram1.cd" />
+    <Content Include="Mvc.sitemap" />
+    <None Include="MvcSiteMapSchema.xsd">
+      <SubType>Designer</SubType>
+    </None>
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
@@ -319,6 +323,8 @@
     <Content Include="Views\Home\EnquirySubmission.cshtml" />
     <Content Include="Views\Booking\BookingConfirmation.cshtml" />
     <Content Include="Views\Booking\ConfirmBooking.cshtml" />
+    <Content Include="Views\Home\Cineplex.cshtml" />
+    <Content Include="Views\Home\EventDetails.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
