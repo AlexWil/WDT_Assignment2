@@ -312,19 +312,18 @@
     <Content Include="Views\Home\About.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Scripts\jquery-1.10.2.min.map" />
-    <Content Include="Views\Seating\Booking.cshtml" />
     <Content Include="Views\Home\Cineplexes.cshtml" />
     <Content Include="Views\Movies\MovieComingSoon.cshtml" />
     <Content Include="Views\Movies\MovieSessions.cshtml" />
     <Content Include="Views\Movies\MovieBooking.cshtml" />
-    <Content Include="Views\Seating\CancelBooking.cshtml" />
-    <Content Include="Views\Seating\ManageBookings.cshtml" />
     <Content Include="Views\Home\Events.cshtml" />
     <Content Include="Views\Home\EnquirySubmission.cshtml" />
     <Content Include="Views\Booking\BookingConfirmation.cshtml" />
     <Content Include="Views\Booking\ConfirmBooking.cshtml" />
     <Content Include="Views\Home\Cineplex.cshtml" />
     <Content Include="Views\Home\EventDetails.cshtml" />
+    <Content Include="Views\Seating\GraphicalSeatBooking.cshtml" />
+    <Content Include="Views\Booking\ManageBookings.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
