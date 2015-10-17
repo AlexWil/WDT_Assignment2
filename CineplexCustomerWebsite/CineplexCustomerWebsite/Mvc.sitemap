@@ -8,7 +8,24 @@
     <mvcSiteMapNode title="Contact" controller="Home" action="Contact"/>
     <mvcSiteMapNode title="Event" controller="Home" action="Event"/>
     <mvcSiteMapNode title="Event Details (no direct access, requires an event to be selected)" controller="Home" action="Cineplexes"/>
+
+
+    <mvcSiteMapNode title="Movie Sessions" controller="Movies" action="MovieSessions">
+      <mvcSiteMapNode title="Movie Coming Soon" controller="Movies" action="MovieComingSoon"/>
+      <mvcSiteMapNode title="Movie Booking (no direct access, requires a Movie Session to be selected" controller="Movies" action="MovieBooking"/>
+    </mvcSiteMapNode>
+    
+    
+    <mvcSiteMapNode title="Track Bookings" controller="Booking" action="ManageBookings">
+    </mvcSiteMapNode>
+    
+    
+    
+    
+    
   </mvcSiteMapNode>
+
+  
 
 
   

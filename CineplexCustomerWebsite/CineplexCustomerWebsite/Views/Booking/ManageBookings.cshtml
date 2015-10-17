@@ -8,7 +8,7 @@
 
 <br />
 
-@using (Html.BeginForm("ManageBookings", "Seating", FormMethod.Post, new { @class = "form-inline" }))
+@using (Html.BeginForm("ManageBookings", "Booking", FormMethod.Post, new { @class = "form-inline" }))
 {
     <p>
         Search By Email: @Html.TextBox("EmailSearch", null, new { @class = "form-control", type = "email"})
