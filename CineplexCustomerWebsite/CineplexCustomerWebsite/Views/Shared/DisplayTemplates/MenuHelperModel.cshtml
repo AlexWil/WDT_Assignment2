@@ -2,9 +2,9 @@
 @using System.Web.Mvc.Html
 @using MvcSiteMapProvider.Web.Html.Models
 
-<ul id="menu">
+<ul id="menu" class="list-group">
     @foreach (var node in Model.Nodes) { 
-        <li>@Html.DisplayFor(m => node) 
+        <li class="list-group-item">@Html.DisplayFor(m => node) 
             @if (node.Children.Any()) {
                 @Html.DisplayFor(m => node.Children)
             }
