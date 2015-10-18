@@ -4,14 +4,14 @@
     ViewBag.Title = "ManageBookings";
 }
 
-<h2>Manage Bookings</h2>
+<h2>Manage your Bookings</h2>
 
 <br />
 
 @using (Html.BeginForm("ManageBookings", "Booking", FormMethod.Post, new { @class = "form-inline" }))
 {
     <p>
-        Search By Email: @Html.TextBox("EmailSearch", null, new { @class = "form-control", type = "email"})
+        Enter your Email: @Html.TextBox("EmailSearch", null, new { @class = "form-control", type = "email"})
         <input class="btn btn-primary" type="submit" value="Search" />
     </p>
 }
@@ -65,10 +65,5 @@
         }
     </table>
 }
-else
-{
-    <h2>Please enter the email associated with the booking.</h2>
-}
-
 
 

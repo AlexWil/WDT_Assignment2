@@ -4,105 +4,105 @@
     ViewBag.Title = "ConfirmBooking";
 }
 
-      <script type="text/javascript" src="~/Scripts/jquery.payment.min.js"></script>
-      <script> 
-          $(document).ready(function () {
-              var number;
-              var exp;
-              var cvv;
-              $("#card_number").payment('formatCardNumber');
-              $("#expiry_date").payment('formatCardExpiry');
-              $("#cvv").payment('formatCardCVC');
-              $('#card_number').blur(function(){
-                  number = $.payment.validateCardNumber($('#card_number').val());
-                  if (!number) {
-                      $('#ccerror').css("display", "inherit");
-                  } else {
-                      $('#ccerror').css("display", "none");
-                  }
-              });
-              $('#expiry_date').blur(function () {
-                  exp = $.payment.validateCardExpiry($.payment.cardExpiryVal($('#expiry_date').val()));
-                  if (!exp) {
-                      $('#experror').css("display", "inherit");
-                  } else {
-                      $('#experror').css("display", "none");
-                  }
-              });
-              $('#cvv').blur(function () {
-                  cvv = $.payment.validateCardCVC($('#cvv').val());
-                  if (!cvv) {
-                      $('#cvverror').css("display", "inherit");
-                  } else {
-                      $('#cvverror').css("display", "none");
-                  }
-              });
-              if (number == true && exp == true && cvv == true) {
-
-              }
-                
+<script type="text/javascript" src="~/Scripts/jquery.payment.min.js"></script>
+<script>
+    $(document).ready(function () {
+        var number;
+        var exp;
+        var cvv;
+        $("#card_number").payment('formatCardNumber');
+        $("#expiry_date").payment('formatCardExpiry');
+        $("#cvv").payment('formatCardCVC');
+        $('#card_number').blur(function () {
+            number = $.payment.validateCardNumber($('#card_number').val());
+            if (!number) {
+                $('#ccerror').css("display", "inherit");
+            } else {
+                $('#ccerror').css("display", "none");
+            }
         });
-    </script>
-    
+        $('#expiry_date').blur(function () {
+            exp = $.payment.validateCardExpiry($.payment.cardExpiryVal($('#expiry_date').val()));
+            if (!exp) {
+                $('#experror').css("display", "inherit");
+            } else {
+                $('#experror').css("display", "none");
+            }
+        });
+        $('#cvv').blur(function () {
+            cvv = $.payment.validateCardCVC($('#cvv').val());
+            if (!cvv) {
+                $('#cvverror').css("display", "inherit");
+            } else {
+                $('#cvverror').css("display", "none");
+            }
+        });
+        if (number == true && exp == true && cvv == true) {
+
+        }
+
+    });
+</script>
+
 
 <h2>Please confirm your booking:</h2>
 
 <div class="jumbotron">
-  Movie:  @ViewBag.MovieTitle<br/>
-  Date:  @ViewBag.MovieDateTime<br />
-  Seats:  @ViewBag.ChosenSeatsCount<br />
-  Price: @ViewBag.TotalPrice.ToString("C2")
-    
+    Movie:  @ViewBag.MovieTitle<br />
+    Date:  @ViewBag.MovieDateTime<br />
+    Seats:  @ViewBag.ChosenSeatsCount<br />
+    Price: @ViewBag.TotalPrice.ToString("C2")
+
 </div>
 
 
 
 @using (Html.BeginForm("Confirmation", "Booking", FormMethod.Get))
 {
-    
-        <h4>Payment details</h4>
 
-        <table class="ccform">
-            <tr>
-                <td><label for="card_number">Card number</label></td>
-                <td>@Html.TextBox("card_number", "", new Dictionary<string, object>() { { "required", "" }, { "placeholder", "1234 5678 9012 3456" } })</td>
-            </tr>
-            <tr>
-                <td><small id="ccerror">Invalid Credit Card Number</small></td>
-            </tr>
-                <tr>
-                    <td><label for="expiry_date">Expiry date</label></td>
-                    <td>@Html.TextBox("expiry_date", "", new Dictionary<string, object>() { { "required", "" }, { "placeholder", "mm/yy" } })</td>
-                </tr>
-                   <tr>
-                       <td>
-                           <small id="experror">Invalid Date</small>
-                       </td>
-                   </tr> 
-                <tr>
-                    <td><label for="cvv">CVC</label></td>
-                    <td>@Html.TextBox("cvv", "", new Dictionary<string, object>() { { "required", "" }, { "placeholder", "123" } })</td>
-                </tr>
-            <tr>
-                <td>
-                    <small id="cvverror">Invalid CVV</small>
-                </td>
-            </tr>
-            <tr>
-                <td><label for="name_on_card">Name on card</label></td>
-                <td>@Html.TextBox("name_on_card", "", new Dictionary<string, object>() { { "required", "" }, { "placeholder", "A Sample" } })</td>
-            </tr>
-            <tr>
-                <td><label for="email">Enter your Email: </label></td>
-                <td>@Html.TextBox("email", "", new { type = "email" })</td>
-            </tr>
-            <tr>
-                <td>
-                    <input class="btn btn-default" type="submit" value="Submit" />
-                </td>
-            </tr>
-        </table>
-    
+    <h4>Payment details</h4>
+
+    <table class="ccform">
+        <tr>
+            <td><label for="card_number">Card number</label></td>
+            <td>@Html.TextBox("card_number", "", new Dictionary<string, object>() { { "required", "" }, { "placeholder", "1234 5678 9012 3456" } })</td>
+        </tr>
+        <tr>
+            <td><small id="ccerror">Invalid Credit Card Number</small></td>
+        </tr>
+        <tr>
+            <td><label for="expiry_date">Expiry date</label></td>
+            <td>@Html.TextBox("expiry_date", "", new Dictionary<string, object>() { { "required", "" }, { "placeholder", "mm/yy" } })</td>
+        </tr>
+        <tr>
+            <td>
+                <small id="experror">Invalid Date</small>
+            </td>
+        </tr>
+        <tr>
+            <td><label for="cvv">CVC</label></td>
+            <td>@Html.TextBox("cvv", "", new Dictionary<string, object>() { { "required", "" }, { "placeholder", "123" } })</td>
+        </tr>
+        <tr>
+            <td>
+                <small id="cvverror">Invalid CVV</small>
+            </td>
+        </tr>
+        <tr>
+            <td><label for="name_on_card">Name on card</label></td>
+            <td>@Html.TextBox("name_on_card", "", new Dictionary<string, object>() { { "required", "" } })</td>
+        </tr>
+        <tr>
+            <td><label for="email">Enter your Email: </label></td>
+            <td>@Html.TextBox("email", "", new { type = "email" })</td>
+        </tr>
+        <tr>
+            <td>
+                <input class="btn btn-default" type="submit" value="Submit" />
+            </td>
+        </tr>
+    </table>
+
 }
 
 

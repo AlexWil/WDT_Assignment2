@@ -1,0 +1,31 @@
+﻿@model CineplexCustomerWebsite.Models.MovieComingSoon
+
+@{
+    ViewBag.Title = "MovieDetails";
+}
+
+<h2>Movie Details</h2>
+
+<div class="row">
+    <div class="panel panel-default col-lg-6" style="float: left;">
+        <div class="panel-heading">
+            <h3 class="panel-title">@Html.DisplayFor(model => model.Title)</h3>
+        </div>
+
+        <div class="panel-body">
+            <ul style="list-style-type: none;">
+                <li>
+                    @Html.DisplayFor(model => model.LongDescription)
+                </li>
+
+            </ul>
+        </div>
+    </div>
+
+    <div class="col-lg-6">
+        <img class="map" src="../../@Model.ImageUrl" />
+    </div>
+
+</div>
+
+@Html.ActionLink("Back", "MovieComingSoon")

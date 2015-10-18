@@ -23,13 +23,13 @@
     {
         <tr>
             <td>
-                @Html.ActionLink((item.Title), "Details", new { id = item.MovieComingSoonID })
+                @Html.ActionLink((item.Title), "MovieDetails", new { id = item.MovieComingSoonID })
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.ShortDescription)
             </td>
             <td>
-                <img class="map" src="@Html.DisplayFor(modelItem => item.ImageUrl)" />
+                <img class="map" height="200px" src="../@item.ImageUrl" />
             </td>
 
         </tr>

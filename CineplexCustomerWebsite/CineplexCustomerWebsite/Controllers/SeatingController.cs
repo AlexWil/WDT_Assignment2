@@ -17,6 +17,7 @@ namespace CineplexCustomerWebsite.Controllers
 
         public ActionResult CancelBookingProcess()
         {
+            Debug.Write(".Here i go again.");
             Session["ChosenSeats"] = null;
             return RedirectToAction("Index", "Home");
         }

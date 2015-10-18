@@ -107,5 +107,10 @@ namespace CineplexCustomerWebsite.Controllers
         {
             return View(db.MovieComingSoon.ToList());
         }
+
+        public ActionResult MovieDetails(int id)
+        {
+            return View(db.MovieComingSoon.First(movie => movie.MovieComingSoonID == id));
+        }
     }
 }
