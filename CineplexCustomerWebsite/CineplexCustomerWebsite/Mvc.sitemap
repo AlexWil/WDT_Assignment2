@@ -4,11 +4,32 @@
             xsi:schemaLocation="http://mvcsitemap.codeplex.com/schemas/MvcSiteMap-File-4.0 MvcSiteMapSchema.xsd">
 
   <mvcSiteMapNode title="Home" controller="Home" action="Index">
+
+
+    <mvcSiteMapNode title="Movie Sessions" controller="Movies" action="MovieSessions">
+      <mvcSiteMapNode title="Track Booking" controller="Booking" action="ManageBookings"/>
+      <mvcSiteMapNode title="Movie Coming Soon" controller="Movies" action="MovieComingSoon"/>
+      <mvcSiteMapNode title="Movie Booking (no direct access)" controller="Movies" action="MovieBooking" clickable="false"/>
+      <mvcSiteMapNode title="Confirm Booking (no direct access)" controller="Booking" action="ConfirmBooking" clickable="false"/>
+      <mvcSiteMapNode title="Booking Confirmation (no direct access)" controller="Booking" action="BookingConfirmation" clickable="false"/>
+    </mvcSiteMapNode>
+    
     <mvcSiteMapNode title="Cineplexes" controller="Home" action="Cineplexes"/>
+    
     <mvcSiteMapNode title="Contact" controller="Home" action="Contact"/>
-    <mvcSiteMapNode title="Event" controller="Home" action="Event"/>
-    <mvcSiteMapNode title="Event Details (no direct access, requires an event to be selected)" controller="Home" action="Cineplexes"/>
+
+    <mvcSiteMapNode title="Enquiry Submission (no direct access)" controller="Home" action="EnquirySubmission" clickable="false"/>
+
+    <mvcSiteMapNode title="Event" controller="Home" action="Event">
+      <mvcSiteMapNode title="Event Details (no direct access)" controller="Home" action="Cineplexes" clickable="false"/>
+    </mvcSiteMapNode>
+
+    <mvcSiteMapNode title="Seating (no direct access)" controller="Seating" action="GraphicalSeatBooking" clickable="false"/>
+
+
   </mvcSiteMapNode>
+
+  
 
 
   
